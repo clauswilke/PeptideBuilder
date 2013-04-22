@@ -99,8 +99,7 @@ def calculateCoordinates(refA, refB, refC, L, ang, di):
 def makeGly(segID, N, CA, C, O, geo):
     '''Creates a Glycine residue'''
     ##Create Residue Data Structure
-    res= Residue((' ', segID, 'F'), "GLY", segID)
-#    res= Residue((' ', segID, ' '), "GLY", '    ') # it should actually look like this, still needs to be fixed throughout
+    res= Residue((' ', segID, ' '), "GLY", '    ')
 
     res.add(N)
     res.add(CA)
@@ -121,7 +120,7 @@ def makeAla(segID, N, CA, C, O, geo):
     CB= Atom("CB", carbon_b, 0.0 , 1.0, " "," CB", 0,"C")
 
     ##Create Residue Data Structure
-    res = Residue((' ', segID, 'F'), "ALA", segID)
+    res = Residue((' ', segID, ' '), "ALA", '    ')
     res.add(N)
     res.add(CA)
     res.add(C)
@@ -146,7 +145,7 @@ def makeSer(segID, N, CA, C, O, geo):
     OG= Atom("OG", oxygen_g, 0.0, 1.0, " ", " OG", 0, "O")
 
     ##Create Reside Data Structure
-    res= Residue((' ', segID, 'F'), "SER", segID)
+    res= Residue((' ', segID, ' '), "SER", '    ')
     res.add(N)
     res.add(CA)
     res.add(C)
@@ -174,7 +173,7 @@ def makeCys(segID, N, CA, C, O, geo):
     SG= Atom("SG", sulfur_g, 0.0, 1.0, " ", " SG", 0, "S")
 
     ##Create Residue Data Structure
-    res= Residue((' ', segID, 'F'), "CYS", segID)
+    res= Residue((' ', segID, ' '), "CYS", '    ')
     res.add(N)
     res.add(CA)
     res.add(C)
@@ -206,7 +205,7 @@ def makeVal(segID, N, CA, C, O, geo):
     CG2= Atom("CG2", carbon_g2, 0.0, 1.0, " ", " CG2", 0, "C")
 
     ##Create Residue Data Structure
-    res= Residue((' ', segID, 'F'), "VAL", segID)
+    res= Residue((' ', segID, ' '), "VAL", '    ')
     res.add(N)
     res.add(CA)
     res.add(C)
@@ -245,7 +244,7 @@ def makeIle(segID, N, CA, C, O, geo):
     CD1= Atom("CD1", carbon_d1, 0.0, 1.0, " ", " CD1", 0, "C")
 
     ##Create Residue Data Structure
-    res= Residue((' ', segID, 'F'), "ILE", segID)
+    res= Residue((' ', segID, ' '), "ILE", '    ')
     res.add(N)
     res.add(CA)
     res.add(C)
@@ -285,7 +284,7 @@ def makeLeu(segID, N, CA, C, O, geo):
     CD2= Atom("CD2", carbon_d2, 0.0, 1.0, " ", " CD2", 0, "C")
 
     ##Create Residue Data Structure
-    res= Residue((' ', segID, 'F'), "LEU", segID)
+    res= Residue((' ', segID, ' '), "LEU", '    ')
     res.add(N)
     res.add(CA)
     res.add(C)
@@ -319,7 +318,7 @@ def makeThr(segID, N, CA, C, O, geo):
     CG2= Atom("CG2", carbon_g2, 0.0, 1.0, " ", " CG2", 0, "C")
 
     ##Create Residue Data Structure
-    res= Residue((' ', segID, 'F'), "THR", segID)
+    res= Residue((' ', segID, ' '), "THR", '    ')
     res.add(N)
     res.add(CA)
     res.add(C)
@@ -376,7 +375,7 @@ def makeArg(segID, N, CA, C, O, geo):
     NH2= Atom("NH2", nitrogen_h2, 0.0, 1.0, " ", " NH2", 0, "N")
 
     ##Create Residue Data Structure
-    res= Residue((' ', segID, 'F'), "ARG", segID)
+    res= Residue((' ', segID, ' '), "ARG", '    ')
     res.add(N)
     res.add(CA)
     res.add(C)
@@ -425,7 +424,7 @@ def makeLys(segID, N, CA, C, O, geo):
     NZ= Atom("NZ", nitrogen_z, 0.0, 1.0, " ", " NZ", 0, "N")
 
     ##Create Residue Data Structure
-    res= Residue((' ', segID, 'F'), "LYS", segID)
+    res= Residue((' ', segID, ' '), "LYS", '    ')
     res.add(N)
     res.add(CA)
     res.add(C)
@@ -466,7 +465,7 @@ def makeAsp(segID, N, CA, C, O, geo):
     OD2= Atom("OD2", oxygen_d2, 0.0, 1.0, " ", " OD2", 0, "O")
 
     ##Create Residue Data Structure
-    res= Residue((' ', segID, 'F'), "ASP", segID)
+    res= Residue((' ', segID, ' '), "ASP", '    ')
     res.add(N)
     res.add(CA)
     res.add(C)
@@ -504,7 +503,7 @@ def makeAsn(segID,N, CA, C, O, geo):
     OD1= Atom("OD1", oxygen_d1, 0.0, 1.0, " ", " OD1", 0, "O")
     nitrogen_d2= calculateCoordinates(CA, CB, CG, CG_ND2_length, CB_CG_ND2_angle, CA_CB_CG_ND2_diangle)
     ND2= Atom("ND2", nitrogen_d2, 0.0, 1.0, " ", " ND2", 0, "N")
-    res= Residue((' ', segID, 'F'), "ASN", segID)
+    res= Residue((' ', segID, ' '), "ASN", '    ')
 
     ##Create Residue Data Structure
     res.add(N)
@@ -552,7 +551,7 @@ def makeGlu(segID, N, CA, C, O, geo):
     OE2= Atom("OE2", oxygen_e2, 0.0, 1.0, " ", " OE2", 0, "O")
 
     ##Create Residue Data Structure
-    res= Residue((' ', segID, 'F'), "GLU", segID)
+    res= Residue((' ', segID, ' '), "GLU", '    ')
     
     res.add(N)
     res.add(CA)
@@ -601,7 +600,7 @@ def makeGln(segID, N, CA, C, O, geo):
 
 
     ##Create Residue DS
-    res= Residue((' ', segID, 'F'), "GLN", segID)
+    res= Residue((' ', segID, ' '), "GLN", '    ')
     
     res.add(N)
     res.add(CA)
@@ -643,7 +642,7 @@ def makeMet(segID, N, CA, C, O, geo):
     CE= Atom("CE", carbon_e, 0.0, 1.0, " ", " CE", 0, "C")
 
     ##Create Residue Data Structure
-    res= Residue((' ', segID, 'F'), "MET", segID)
+    res= Residue((' ', segID, ' '), "MET", '    ')
     res.add(N)
     res.add(CA)
     res.add(C)
@@ -695,7 +694,7 @@ def makeHis(segID, N, CA, C, O, geo):
     NE2= Atom("NE2", nitrogen_e2, 0.0, 1.0, " ", " NE2", 0, "N")
 
     ##Create Residue Data Structure
-    res= Residue((' ', segID, 'F'), "HIS", segID)
+    res= Residue((' ', segID, ' '), "HIS", '    ')
     res.add(N)
     res.add(CA)
     res.add(C)
@@ -731,7 +730,7 @@ def makePro(segID, N, CA, C, O, geo):
     CD= Atom("CD", carbon_d, 0.0, 1.0, " ", " CD", 0, "C")
 
     ##Create Residue Data Structure
-    res= Residue((' ', segID, 'F'), "PRO", segID)
+    res= Residue((' ', segID, ' '), "PRO", '    ')
     
     res.add(N)
     res.add(CA)
@@ -790,7 +789,7 @@ def makePhe(segID, N, CA, C, O, geo):
     CZ= Atom("CZ", carbon_z, 0.0, 1.0, " ", " CZ", 0, "C")
 
     ##Create Residue Data Structures
-    res= Residue((' ', segID, 'F'), "PHE", segID)
+    res= Residue((' ', segID, ' '), "PHE", '    ')
     res.add(N)
     res.add(CA)
     res.add(C)
@@ -857,7 +856,7 @@ def makeTyr(segID, N, CA, C, O, geo):
     OH= Atom("OH", oxygen_h, 0.0, 1.0, " ", " OH", 0, "O")
 
     ##Create Residue Data S
-    res= Residue((' ', segID, 'F'), "TYR", segID)
+    res= Residue((' ', segID, ' '), "TYR", '    ')
     res.add(N)
     res.add(CA)
     res.add(C)
@@ -940,7 +939,7 @@ def makeTrp(segID, N, CA, C, O, geo):
     CH2= Atom("CH2", carbon_h2, 0.0, 1.0, " ", " CH2", 0, "C")
     
     ##Create Residue DS
-    res= Residue((' ', segID, 'F'), "TRP", segID)
+    res= Residue((' ', segID, ' '), "TRP", '    ')
     res.add(N)
     res.add(CA)
     res.add(C)
