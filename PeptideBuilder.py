@@ -1052,13 +1052,15 @@ def getReferenceResidue(structure):
     
     This function is a helper function that should not normally be called
     directly.'''
-    resRef=Residue((' ', 0, 'F'), "GLY", 0 )
-    for residue in structure[0]['A']:
-        resRef=residue
 
-# new code        
-#    resRef = structure[0]['A'][-1] # If this doesn't exist we're in trouble. Likely initialize_res() wasn't called.
-#    assert is_aa(resRef) # If this is not an amino acid we're in trouble. Likely somebody is trying to append residues to an existing structure that has non-amino-acid molecules in the chain.
+    # If the following line doesn't work we're in trouble.
+    # Likely initialize_res() wasn't called.
+    resRef = structure[0]['A'].child_list[-1]
+    
+    # If the residue is not an amino acid we're in trouble.
+    # Likely somebody is trying to append residues to an existing
+    # structure that has non-amino-acid molecules in the chain.
+    assert is_aa(resRef)
         
     return resRef
 
