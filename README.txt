@@ -1,11 +1,19 @@
 This is the PeptideBuilder library, written by Matthew A. Tien,
 Dariya K. Sydykova, Austin G. Meyer, and Claus O. Wilke.
 
-This directory contains 3 files, Geometry.py, PeptideBuilder.py,
-and simpleExample.py. The first two constitute the PeptideBuilder
+The software is provided to you under the GNU General Public
+License, version 2.0 or later.
+
+The files 'Geometry.py' and 'PeptideBuilder.py' constitute the PeptideBuilder
 library. They need to be placed into the search path of your python
-installation. The third is a brief example script demonstrating
+installation.
+
+The file 'simpleExample.py' is a brief example script demonstrating
 basic use of the PeptideBuilder library.
 
-This software is provided to you under the GNU General Public
-License, version 2.0 or later.
+To test whether your installation works properly, run the script 'unitTests.py'
+and compare the resulting output to the files in 'unitTests.expected'. On
+unix, the shell script 'runUnitTests.sh' will do that for you. If the shell
+script doesn't find any differences (prints out only empty lines) then
+everything is working correctly.
+

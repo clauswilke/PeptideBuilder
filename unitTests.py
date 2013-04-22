@@ -14,7 +14,7 @@ import Bio.PDB
 structure = PeptideBuilder.initialize_res('A')
 
 for aa in "CDEFGHIKLMNPQRSTVWY":
-	structure = PeptideBuilder.add_residue(structure, aa)
+    structure = PeptideBuilder.add_residue(structure, aa)
     
 out = Bio.PDB.PDBIO()
 out.set_structure(structure)
@@ -24,20 +24,24 @@ out.save( "test1.pdb" )
 phi = -60
 psi_im1 = -40
 geo = Geometry.geometry('A')
-#geo.phi = phi
-#geo.psi_im1 = psi_im1
+geo.phi = phi
+geo.psi_im1 = psi_im1
 structure = PeptideBuilder.initialize_res(geo)
 
 for aa in "CDEFGHIKLMNPQRSTVWY":
-	phi += 1
-	psi_im1 -= 1
-	geo = Geometry.geometry(aa)
-#	geo.phi = phi
-#	geo.psi_im1 = psi_im1
-	structure = PeptideBuilder.add_residue(structure, geo)
+    phi += 1
+    psi_im1 -= 1
+    geo = Geometry.geometry(aa)
+    geo.phi = phi
+    geo.psi_im1 = psi_im1
+    structure = PeptideBuilder.add_residue(structure, geo)
     
 out = Bio.PDB.PDBIO()
 out.set_structure(structure)
 out.save( "test2.pdb" )
 
+# Print out all geometries
+out = file("test3.txt", 'w')
+for aa in "ACDEFGHIKLMNPQRSTVWY":
+    print >>out, Geometry.geometry(aa)
 

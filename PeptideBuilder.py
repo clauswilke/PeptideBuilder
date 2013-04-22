@@ -1056,6 +1056,10 @@ def getReferenceResidue(structure):
     for residue in structure[0]['A']:
         resRef=residue
 
+# new code        
+#    resRef = structure[0]['A'][-1] # If this doesn't exist we're in trouble. Likely initialize_res() wasn't called.
+#    assert is_aa(resRef) # If this is not an amino acid we're in trouble. Likely somebody is trying to append residues to an existing structure that has non-amino-acid molecules in the chain.
+        
     return resRef
 
 def add_residue_from_geo(structure, geo):
