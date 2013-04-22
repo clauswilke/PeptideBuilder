@@ -100,6 +100,7 @@ def makeGly(segID, N, CA, C, O, geo):
     '''Creates a Glycine residue'''
     ##Create Residue Data Structure
     res= Residue((' ', segID, 'F'), "GLY", segID)
+#    res= Residue((' ', segID, ' '), "GLY", '    ') # it should actually look like this, still needs to be fixed throughout
 
     res.add(N)
     res.add(CA)
@@ -959,10 +960,17 @@ def makeTrp(segID, N, CA, C, O, geo):
     res.add(CH2)
     return res
 
-def initialize_res(geo):
+def initialize_res(residue):
     '''Creates a new structure containing a single amino acid. The type and
-    geometry of the amino acid are determined by the geometry object provided
-    as argument. The amino acid will be placed into chain A of model 0.'''
+    geometry of the amino acid are determined by the argument, which has to be
+    either a geometry object or a single-letter amino acid code.
+    The amino acid will be placed into chain A of model 0.'''
+    
+    if isinstance( residue, Geo ):
+        geo = residue
+    else:
+        geo=geometry(residue) 
+    
     segID=1
     AA= geo.residue_name
     CA_N_length=geo.CA_N_length
@@ -1040,20 +1048,26 @@ def initialize_res(geo):
 
 
 def getReferenceResidue(structure):
-    '''Returns the last residue of chain A model 0 of the given structure.'''
+    '''Returns the last residue of chain A model 0 of the given structure.
+    
+    This function is a helper function that should not normally be called
+    directly.'''
     resRef=Residue((' ', 0, 'F'), "GLY", 0 )
     for residue in structure[0]['A']:
         resRef=residue
 
     return resRef
 
-def add_residue(structure, geo):
+def add_residue_from_geo(structure, geo):
     '''Adds a residue to chain A model 0 of the given structure, and
     returns the new structure. The residue to be added is determined by
-    the geometry object given as second argument.'''
+    the geometry object given as second argument.
+    
+    This function is a helper function and should not normally be called
+    directly. Call add_residue() instead.'''
     resRef= getReferenceResidue(structure)
     AA=geo.residue_name
-    segID= resRef.get_segid()
+    segID= resRef.get_id()[1]
     segID+=1
 
     ##geometry to bring together residue
@@ -1066,10 +1080,10 @@ def add_residue(structure, geo):
     CA_N_length=geo.CA_N_length
     CA_C_length=geo.CA_C_length
     phi= geo.phi
-    psi=geo.psi
+    psi_im1=geo.psi_im1
     omega=geo.omega
 
-    N_coord=calculateCoordinates(resRef['N'], resRef['CA'], resRef['C'], peptide_bond, CA_C_N_angle, psi)
+    N_coord=calculateCoordinates(resRef['N'], resRef['CA'], resRef['C'], peptide_bond, CA_C_N_angle, psi_im1)
     N= Atom("N", N_coord, 0.0 , 1.0, " "," N", 0, "N")
 
     CA_coord=calculateCoordinates(resRef['CA'], resRef['C'], N, CA_N_length, C_N_CA_angle, omega)
@@ -1131,7 +1145,7 @@ def add_residue(structure, geo):
         
     resRef['O'].set_coord(calculateCoordinates(res['N'], resRef['CA'], resRef['C'], C_O_length, CA_C_O_angle, 180.0))
 
-    ghost= Atom("N", calculateCoordinates(res['N'], res['CA'], res['C'], peptide_bond, CA_C_N_angle, psi), 0.0 , 0.0, " ","N", 0, "N")
+    ghost= Atom("N", calculateCoordinates(res['N'], res['CA'], res['C'], peptide_bond, CA_C_N_angle, psi_im1), 0.0 , 0.0, " ","N", 0, "N")
     res['O'].set_coord(calculateCoordinates( res['N'], res['CA'], res['C'], C_O_length, CA_C_O_angle, 180.0))
 
     structure[0]['A'].add(res)
@@ -1152,10 +1166,10 @@ def make_extended_structure(AA_chain):
 
     return struc
 
-def make_structure(AA_chain,phi,psi,omega=[]):
+def make_structure(AA_chain,phi,psi_im1,omega=[]):
     '''Place a sequence of amino acids into a peptide with specified
     backbone dihedral angles. The argument AA_chain holds the
-    sequence of amino acids to be used. The arguments phi and psi hold
+    sequence of amino acids to be used. The arguments phi and psi_im1 hold
     lists of backbone angles, one for each amino acid. The argument 
     omega (optional) holds a list of omega angles.'''
     geo = geometry(AA_chain[0])
@@ -1164,34 +1178,40 @@ def make_structure(AA_chain,phi,psi,omega=[]):
     if len(omega) ==0:
         for i in range(1,len(AA_chain)): 
             AA = AA_chain[i]
-            add_AA(struc, AA, phi[i-1], psi[i-1])
+            add_AA(struc, AA, phi[i-1], psi_im1[i-1])
     else:
         for i in range(1,len(AA_chain)): 
             AA = AA_chain[i]
-            add_AA(struc, AA, phi[i-1], psi[i-1], omega[i-1])
+            add_AA(struc, AA, phi[i-1], psi_im1[i-1], omega[i-1])
 
     return struc
 
 
-def add_AA(structure, AA, phi, psi, omega=-370):
+def add_residue(structure, residue, phi=-120, psi_im1=140, omega=-370):
     '''Adds a residue to chain A model 0 of the given structure, and
-    returns the new structure. The residue to be added is specified as
-    single-letter code in the AA argument. The arguments phi and psi
-    specify the corresponding backbone angles, as does omega (optional).
+    returns the new structure. The residue to be added can be specified
+    in two ways: either as a geometry object (in which case
+    the remaining arguments phi, psi_im1, and omega are ignored) or as a
+    single-letter amino-acid code. In the latter case, the optional
+    arguments phi, psi_im1, and omega specify the corresponding backbone
+    angles.
     
     When omega is specified, it needs to be a value greater than or equal
     to -360. Values below -360 are ignored.''' 
-    geo=geometry(AA) 
-    geo.phi=phi
-    geo.psi=psi
-    if omega>-361:
-        geo.omega=omega
     
-    add_residue(structure, geo)
+    if isinstance( residue, Geo ):
+        geo = residue
+    else:
+        geo=geometry(residue) 
+        geo.phi=phi
+        geo.psi_im1=psi_im1
+        if omega>-361:
+            geo.omega=omega
     
+    add_residue_from_geo(structure, geo)
     return structure
-
-def make_geo_structure(geos):
+    
+def make_structure_from_geos(geos):
     '''Creates a structure out of a list of geometry objects.'''
     model_structure=initialize_res(geos[0])
     for i in range(1,len(geos)):
