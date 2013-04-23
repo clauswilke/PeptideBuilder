@@ -1202,12 +1202,14 @@ def make_structure(AA_chain,phi,psi_im1,omega=[]):
     '''Place a sequence of amino acids into a peptide with specified
     backbone dihedral angles. The argument AA_chain holds the
     sequence of amino acids to be used. The arguments phi and psi_im1 hold
-    lists of backbone angles, one for each amino acid. The argument 
-    omega (optional) holds a list of omega angles.'''
+    lists of backbone angles, one for each amino acid, *starting from
+    the second amino acid in the chain*. The argument 
+    omega (optional) holds a list of omega angles, also starting from
+    the second amino acid in the chain.'''
     geo = geometry(AA_chain[0])
     struc=initialize_res(geo)
 
-    if len(omega) ==0:
+    if len(omega)==0:
         for i in range(1,len(AA_chain)): 
             AA = AA_chain[i]
             add_residue(struc, AA, phi[i-1], psi_im1[i-1])

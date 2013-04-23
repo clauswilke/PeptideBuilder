@@ -70,3 +70,41 @@ for aa in "ACDEFGHIKLMNPQRSTVWY":
 structure = PeptideBuilder.make_structure_from_geos(geos)  
 out.set_structure(structure)
 out.save("test5.pdb")
+
+
+# Build a helix containing all 20 amino acids, with slowly varying
+# backbone angles, using make_structure().
+# The resulting structure should be identical to test2.pdb
+phi_list = []
+psi_im1_list = []
+
+for i in range(1,20):
+    phi_list.append(-60+i)
+    psi_im1_list.append(-40-i)
+structure = PeptideBuilder.make_structure("ACDEFGHIKLMNPQRSTVWY",\
+                                                phi_list, psi_im1_list)
+out.set_structure(structure)
+out.save("test6.pdb")
+
+# Build a helix containing all 20 amino acids, with slowly varying
+# backbone angles, using make_structure().
+# The first half of the resulting structure should be identical to
+# test6.pdb, while the second half should be slightly different.
+phi_list = []
+psi_im1_list = []
+omega_list = []
+
+for i in range(1,20):
+    phi_list.append(-60+i)
+    psi_im1_list.append(-40-i)
+    omega_list.append(180)
+    
+for i in range(9,19):
+    omega_list[i] = -178
+    
+structure = PeptideBuilder.make_structure("ACDEFGHIKLMNPQRSTVWY",\
+                                                phi_list, psi_im1_list,\
+                                                omega_list)
+out.set_structure(structure)
+out.save("test7.pdb")
+
