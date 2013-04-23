@@ -14,15 +14,19 @@ import math
 import Geometry
 import PeptideBuilder
 import numpy
+from os import path
 
 resdict = { 'ALA': 'A', 'CYS': 'C', 'ASP': 'D', 'GLU': 'E', 'PHE': 'F', \
 	    'GLY': 'G', 'HIS': 'H', 'ILE': 'I', 'LYS': 'K', 'LEU': 'L', \
 	    'MET': 'M', 'ASN': 'N', 'PRO': 'P', 'GLN': 'Q', 'ARG': 'R', \
 	    'SER': 'S', 'THR': 'T', 'VAL': 'V', 'TRP': 'W', 'TYR': 'Y' }
 
+PDBdir = "PDBs"
+
 def build_linear_model(pdb_filename):
     parser=PDBParser()
-    structure=parser.get_structure( 'sample', pdb_filename )
+    structure=parser.get_structure('sample', \
+                                path.join(PDBdir, pdb_filename) )
     model=structure[0]
     chain=model['A']
     model_structure_geo=[]
@@ -39,12 +43,13 @@ def build_linear_model(pdb_filename):
 def make_pdb_file(struct, file_nom):
     outfile = PDBIO()
     outfile.set_structure(struct)
-    outfile.save( file_nom)
+    outfile.save(path.join(PDBdir, file_nom))
     return file_nom        
 
 def build_backbone_model(pdb_filename):
     parser=PDBParser()
-    structure=parser.get_structure( 'sample', pdb_filename )
+    structure=parser.get_structure('sample', \
+                                    path.join(PDBdir, pdb_filename))
     model=structure[0]
     chain=model['A']
     model_structure_geo=[]
@@ -107,19 +112,14 @@ def build_backbone_model(pdb_filename):
                  CA_prev=res['CA']
                  C_prev=res['C']
                  ##O_prev=res['O']
-                               
-                        
+                                               
             model_structure_geo.append(geo)
-##    model_structure=PeptideBuilder.initialize_res(model_structure_geo[0])
-##    for i in range(1,len(model_structure_geo)):
-##        model_structure=PeptideBuilder.add_residue(model_structure, model_structure_geo[i])
-##
-##    return model_structure
     return model_structure_geo
 
-def build_limited_backbone_model(pdb_filename):
+def build_all_angles_model(pdb_filename):
     parser=PDBParser()
-    structure=parser.get_structure( 'sample', pdb_filename )
+    structure=parser.get_structure('sample', \
+                                    path.join(PDBdir, pdb_filename))
     model=structure[0]
     chain=model['A']
     model_structure_geo=[]
@@ -173,17 +173,13 @@ def build_limited_backbone_model(pdb_filename):
                                 
                         
             model_structure_geo.append(geo)
-##        model_structure=PeptideBuilder.initialize_res(model_structure_geo[0])
-##        for i in range(1,len(model_structure_geo)):
-##                model_structure=PeptideBuilder.add_residue(model_structure, model_structure_geo[i])
-##
-##        return model_structure
     return model_structure_geo
 
         
-def build_rough_model(pdb_filename):
+def build_phi_psi_model(pdb_filename):
     parser=PDBParser()
-    structure=parser.get_structure( 'sample', pdb_filename )
+    structure=parser.get_structure('sample', \
+                                    path.join(PDBdir, pdb_filename))
     model=structure[0]
     chain=model['A']
     seq=""
@@ -224,18 +220,16 @@ def build_rough_model(pdb_filename):
                 C_prev=res['C']
                                 
     model_structure_omega= PeptideBuilder.make_structure( seq, phi_diangle, psi_diangle, omega_diangle )
-    model_structure_rough= PeptideBuilder.make_structure( seq, phi_diangle, psi_diangle)
-    return model_structure_omega, model_structure_rough   
-##geo = Geometry.geometry("G")
-##structure = PeptideBuilder.initialize_res(geo)
-##for i in range(4):
-##	structure = PeptideBuilder.add_residue(structure, geo)
+    model_structure_phi_psi= PeptideBuilder.make_structure( seq, phi_diangle, psi_diangle)
+    return model_structure_omega, model_structure_phi_psi   
 
-def compare_structure( reference, alternate):
+def compare_structure(reference, alternate):
     parser=PDBParser()
 
-    ref_struct=parser.get_structure('Reference', reference)
-    alt_struct= parser.get_structure("Alternate", alternate)
+    ref_struct=parser.get_structure('Reference', \
+                                    path.join(PDBdir, reference))
+    alt_struct= parser.get_structure("Alternate", \
+                                    path.join(PDBdir, alternate))
 
 
     ref_model=ref_struct[0]
@@ -283,27 +277,49 @@ def compare_structure( reference, alternate):
 
         
         
-def test_PeptideBuilder(pdb_File):
-    structure_backbone= PeptideBuilder.make_structure_from_geos(build_backbone_model(pdb_File))
-    structure_omega, structure_rough=build_rough_model(pdb_File)
-    structure_limited= PeptideBuilder.make_structure_from_geos(build_limited_backbone_model(pdb_File))
-
-    RMS_backbone_50,RMS_backbone_150, RMS_backbone, size= compare_structure(pdb_File, make_pdb_file(structure_backbone, "Backbone_" + pdb_File))
-    RMS_rough_50, RMS_rough_150, RMS_rough, size= compare_structure(pdb_File, make_pdb_file(structure_rough, "Rough_" + pdb_File))
-    RMS_omega_50, RMS_omega_150, RMS_omega, size= compare_structure(pdb_File, make_pdb_file(structure_omega, "Omega_" + pdb_File))
-    RMS_limited_50, RMS_limited_150, RMS_limited, size= compare_structure(pdb_File, make_pdb_file(structure_limited, "Limited_" + pdb_File))
-    #output_line= "%s\t%0.2f\t%0.2f\t%0.2f\t%0.2f\t%0.2f\t%0.2f\t%0.2f\t%0.2f\t%0.2f\t%i\n" % (pdb_File[:-4],RMS_rough_50, RMS_omega_50, RMS_backbone_50,RMS_rough_150, RMS_omega_150, RMS_backbone_150, RMS_rough, RMS_omega, RMS_backbone, size)
-    output_line= "%s\t%0.2f\t%0.2f\t%0.2f\t%i\n" % (pdb_File[:-4],RMS_limited_50, RMS_limited_150, RMS_limited, size)
+def test_PeptideBuilder(pdb_code):
+    # retrieve pdb file
+    pdbl=PDBList()
+    pdbl.retrieve_pdb_file(pdb_code, pdir=PDBdir)
+    pdb_file = "pdb%s.ent" % (pdb_code)
+    
+    # build backbone model from all angles and bond lengths
+    structure_backbone= PeptideBuilder.make_structure_from_geos(build_backbone_model(pdb_file))
+    
+    # build backbone model from all angles
+    structure_all_angles= PeptideBuilder.make_structure_from_geos(build_all_angles_model(pdb_file))
+    
+    # build models from dihedral angles only
+    structure_omega, structure_phi_psi=build_phi_psi_model(pdb_file)
+    
+    # compare models to original structure
+    RMS_backbone_50, RMS_backbone_150, RMS_backbone, size= compare_structure(pdb_file, make_pdb_file(structure_backbone, "Backbone_" + pdb_file))
+    RMS_phi_psi_50, RMS_phi_psi_150, RMS_phi_psi, size= compare_structure(pdb_file, make_pdb_file(structure_phi_psi, "PhiPsi_" + pdb_file))
+    RMS_omega_50, RMS_omega_150, RMS_omega, size= compare_structure(pdb_file, make_pdb_file(structure_omega, "PhiPsiOmega_" + pdb_file))
+    RMS_all_angles_50, RMS_all_angles_150, RMS_all_angles, size= compare_structure(pdb_file, make_pdb_file(structure_all_angles, "AllAngles_" + pdb_file))
+    output_line= "%s\t%i\t%0.1f\t%0.1f\t%0.1f\t%0.1f\t%0.1f\t%0.1f\t%0.1f\t%0.1f\t%0.1f\t%0.1f\t%0.1f\t%0.1f\n" % \
+        (pdb_code, \
+         size, \
+         RMS_phi_psi_50, \
+         RMS_phi_psi_150, \
+         RMS_phi_psi, \
+         RMS_omega_50, \
+         RMS_omega_150, \
+         RMS_omega, \
+         RMS_all_angles_50, \
+         RMS_all_angles_150, \
+         RMS_all_angles, \
+         RMS_backbone_50, \
+         RMS_backbone_150, \
+         RMS_backbone )
     return output_line
 
-#test_files=["4eoi.pdb","3cuq.pdb","1lnm.pdb","2ocf.pdb","2o6r.pdb","1nbw.pdb","7tim.pdb", "1vca.pdb", "1aq7.pdb", "1gfl.pdb"]
-test_files = [ "1GFL.pdb" ]
+test_structures=["4eoi","3cuq","1lnm","2ocf","2o6r","1nbw","7tim", "1vca", "1aq7", "1gfl"]
+#test_structures = [ "1gfl" ]
 
-f_out=open("Evaluation_PeptideBuilder_limited.txt","w")
-##f_out.write("PDB\tPhi-Psi-50\tPhi-Psi-Omega-50\tAll_backbone-50\tPhi-Psi-150\tPhi-Psi-Omega-150\tAll_backbone-150\tPhi-Psi\tPhi-Psi-Omega\tAll_backbone\tlength\n")
-f_out.write("PDB\tlimited50\tlimited150\tlimited_full\tlength\n")
-for i in test_files:
+f_out=open("reconstructed_RMSDs.txt","w")
+f_out.write("PDB-ID\t\tlengthPhi-Psi-50\tPhi-Psi-150\tPhi-Psi\tPhi-Psi-Omega-50\tPhi-Psi-Omega-150\tPhi-Psi-Omega\tAll-Angles-50\tAll-Angles-150\tAll-Angles\tBackbone-50\tBackbone-150\tBackbone\n")
+for i in test_structures:
     print i
     f_out.write(test_PeptideBuilder(i))
-
 f_out.close()
