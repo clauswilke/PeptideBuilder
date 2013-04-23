@@ -17,3 +17,4 @@ unix, the shell script 'runUnitTests.sh' will do that for you. If the shell
 script doesn't find any differences (prints out only empty lines) then
 everything is working correctly.
 
+The script 'evaluation.py' reproduces the results presented in Table 1 of the PeptideBuilder manuscript.
