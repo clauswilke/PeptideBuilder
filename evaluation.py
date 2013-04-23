@@ -90,7 +90,7 @@ def build_backbone_model(pdb_filename):
                  omega= calc_dihedral(ca1, c1, n, ca) ##goes to current res
                  phi= calc_dihedral(c1, n, ca, c) ##goes to current res
 
-                 geo.psi=psi*rad
+                 geo.psi_im1=psi*rad
                  geo.omega=omega*rad
                  geo.phi=phi*rad
 
@@ -157,7 +157,7 @@ def build_limited_backbone_model(pdb_filename):
                 omega= calc_dihedral(ca1, c1, n, ca) ##goes to current res
                 phi= calc_dihedral(c1, n, ca, c) ##goes to current res
 
-                geo.psi=psi*rad
+                geo.psi_im1=psi*rad
                 geo.omega=omega*rad
                 geo.phi=phi*rad
 
