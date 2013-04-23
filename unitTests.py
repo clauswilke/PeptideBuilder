@@ -10,7 +10,7 @@ import PeptideBuilder
 import Bio.PDB
 
 
-# Build a helix containing all 20 amino acids
+# Build a peptide containing all 20 amino acids
 structure = PeptideBuilder.initialize_res('A')
 
 for aa in "CDEFGHIKLMNPQRSTVWY":
@@ -18,7 +18,7 @@ for aa in "CDEFGHIKLMNPQRSTVWY":
     
 out = Bio.PDB.PDBIO()
 out.set_structure(structure)
-out.save( "test1.pdb" )
+out.save("test1.pdb")
 
 # Build a helix containing all 20 amino acids, with slowly varying backbone angles
 phi = -60
@@ -36,12 +36,37 @@ for aa in "CDEFGHIKLMNPQRSTVWY":
     geo.psi_im1 = psi_im1
     structure = PeptideBuilder.add_residue(structure, geo)
     
-out = Bio.PDB.PDBIO()
 out.set_structure(structure)
-out.save( "test2.pdb" )
+out.save("test2.pdb")
 
 # Print out all geometries
-out = file("test3.txt", 'w')
+outfile = file("test3.txt", 'w')
 for aa in "ACDEFGHIKLMNPQRSTVWY":
-    print >>out, Geometry.geometry(aa)
+    print >>outfile, Geometry.geometry(aa)
 
+# Build a helix containing all 20 amino acids from list of geometries.
+# The structure should be identical to test1.pdb
+
+geos = []
+for aa in "ACDEFGHIKLMNPQRSTVWY":
+    geos.append(Geometry.geometry(aa))
+structure = PeptideBuilder.make_structure_from_geos(geos)
+out.set_structure(structure)
+out.save("test4.pdb")
+
+# Build a peptide containing all 20 amino acids in extended conformation.
+# The structure should be identical to test1.pdb
+
+structure = PeptideBuilder.make_extended_structure("ACDEFGHIKLMNPQRSTVWY")
+out.set_structure(structure)
+out.save("test4.pdb")
+
+# Build a peptide containing all 20 amino acids from list of geometries.
+# The structure should be identical to test1.pdb
+
+geos = []
+for aa in "ACDEFGHIKLMNPQRSTVWY":
+    geos.append(Geometry.geometry(aa))
+structure = PeptideBuilder.make_structure_from_geos(geos)  
+out.set_structure(structure)
+out.save("test5.pdb")

@@ -9,4 +9,6 @@ python ./unitTests.py
 # run comparisons
 echo `diff -q test1.pdb unitTests.expected/test1.pdb`
 echo `diff -q test2.pdb unitTests.expected/test2.pdb`
-echo `diff -1 test3.txt unitTests.expected/test3.txt`
+echo `diff -q test3.txt unitTests.expected/test3.txt`
+echo `diff -q test4.pdb unitTests.expected/test4.pdb`
+echo `diff -q test5.pdb unitTests.expected/test5.pdb`
