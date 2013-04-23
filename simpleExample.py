@@ -17,7 +17,7 @@ geo.phi=-60
 geo.psi_im1=-40
 structure = PeptideBuilder.initialize_res(geo)
 for i in range(5):
-	structure = PeptideBuilder.add_residue(structure, geo)
+    structure = PeptideBuilder.add_residue(structure, geo)
     
 import Bio.PDB
 out = Bio.PDB.PDBIO()
