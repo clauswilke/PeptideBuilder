@@ -1171,27 +1171,7 @@ def make_extended_structure(AA_chain):
 
     return struc
 
-def make_structure(AA_chain,phi,psi_im1,omega=[]):
-    '''Place a sequence of amino acids into a peptide with specified
-    backbone dihedral angles. The argument AA_chain holds the
-    sequence of amino acids to be used. The arguments phi and psi_im1 hold
-    lists of backbone angles, one for each amino acid. The argument 
-    omega (optional) holds a list of omega angles.'''
-    geo = geometry(AA_chain[0])
-    struc=initialize_res(geo)
-
-    if len(omega) ==0:
-        for i in range(1,len(AA_chain)): 
-            AA = AA_chain[i]
-            add_AA(struc, AA, phi[i-1], psi_im1[i-1])
-    else:
-        for i in range(1,len(AA_chain)): 
-            AA = AA_chain[i]
-            add_AA(struc, AA, phi[i-1], psi_im1[i-1], omega[i-1])
-
-    return struc
-
-
+    
 def add_residue(structure, residue, phi=-120, psi_im1=140, omega=-370):
     '''Adds a residue to chain A model 0 of the given structure, and
     returns the new structure. The residue to be added can be specified
@@ -1215,6 +1195,29 @@ def add_residue(structure, residue, phi=-120, psi_im1=140, omega=-370):
     
     add_residue_from_geo(structure, geo)
     return structure
+    
+
+    
+def make_structure(AA_chain,phi,psi_im1,omega=[]):
+    '''Place a sequence of amino acids into a peptide with specified
+    backbone dihedral angles. The argument AA_chain holds the
+    sequence of amino acids to be used. The arguments phi and psi_im1 hold
+    lists of backbone angles, one for each amino acid. The argument 
+    omega (optional) holds a list of omega angles.'''
+    geo = geometry(AA_chain[0])
+    struc=initialize_res(geo)
+
+    if len(omega) ==0:
+        for i in range(1,len(AA_chain)): 
+            AA = AA_chain[i]
+            add_residue(struc, AA, phi[i-1], psi_im1[i-1])
+    else:
+        for i in range(1,len(AA_chain)): 
+            AA = AA_chain[i]
+            add_residue(struc, AA, phi[i-1], psi_im1[i-1], omega[i-1])
+
+    return struc
+    
     
 def make_structure_from_geos(geos):
     '''Creates a structure out of a list of geometry objects.'''

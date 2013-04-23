@@ -284,23 +284,21 @@ def compare_structure( reference, alternate):
         
         
 def test_PeptideBuilder(pdb_File):
-    ##structure_backbone= PeptideBuilder.make_geo_structure(build_backbone_model(pdb_File))
-    ##structure_omega, structure_rough=build_rough_model(pdb_File)
-    ##structure_limited= PeptideBuilder.make_geo_structure(build_limited_backbone_model(pdb_File))
+    structure_backbone= PeptideBuilder.make_structure_from_geos(build_backbone_model(pdb_File))
+    structure_omega, structure_rough=build_rough_model(pdb_File)
+    structure_limited= PeptideBuilder.make_structure_from_geos(build_limited_backbone_model(pdb_File))
 
-    ##RMS_backbone_50,RMS_backbone_150, RMS_backbone, size= compare_structure(pdb_File, make_pdb_file(structure_backbone, "Backbone_" + pdb_File))
-    ##RMS_rough_50, RMS_rough_150, RMS_rough, size= compare_structure(pdb_File, make_pdb_file(structure_rough, "Rough_" + pdb_File))
-    ##RMS_omega_50, RMS_omega_150, RMS_omega, size= compare_structure(pdb_File, make_pdb_file(structure_omega, "Omega_" + pdb_File))
+    RMS_backbone_50,RMS_backbone_150, RMS_backbone, size= compare_structure(pdb_File, make_pdb_file(structure_backbone, "Backbone_" + pdb_File))
+    RMS_rough_50, RMS_rough_150, RMS_rough, size= compare_structure(pdb_File, make_pdb_file(structure_rough, "Rough_" + pdb_File))
+    RMS_omega_50, RMS_omega_150, RMS_omega, size= compare_structure(pdb_File, make_pdb_file(structure_omega, "Omega_" + pdb_File))
     RMS_limited_50, RMS_limited_150, RMS_limited, size= compare_structure(pdb_File, make_pdb_file(structure_limited, "Limited_" + pdb_File))
-    ##output_line= "%s\t%0.2f\t%0.2f\t%0.2f\t%0.2f\t%0.2f\t%0.2f\t%0.2f\t%0.2f\t%0.2f\t%i\n" % (pdb_File[:-4],RMS_rough_50, RMS_omega_50, RMS_backbone_50,RMS_rough_150, RMS_omega_150, RMS_backbone_150, RMS_rough, RMS_omega, RMS_backbone, size)
+    #output_line= "%s\t%0.2f\t%0.2f\t%0.2f\t%0.2f\t%0.2f\t%0.2f\t%0.2f\t%0.2f\t%0.2f\t%i\n" % (pdb_File[:-4],RMS_rough_50, RMS_omega_50, RMS_backbone_50,RMS_rough_150, RMS_omega_150, RMS_backbone_150, RMS_rough, RMS_omega, RMS_backbone, size)
     output_line= "%s\t%0.2f\t%0.2f\t%0.2f\t%i\n" % (pdb_File[:-4],RMS_limited_50, RMS_limited_150, RMS_limited, size)
     return output_line
-##"1LMB.pdb"
-##"2jfg.pdb"
-##"3cmo.pdb"
-test_files=["4eoi.pdb","3cuq.pdb","1lnm.pdb","2ocf.pdb","2o6r.pdb","1nbw.pdb","7tim.pdb", "1vca.pdb", "1aq7.pdb", "1gfl.pdb"]
-##<100 "2b88.pdb","1ayi.pdb","2faz.pdb","3rcp.pdb","1mi0.pdb", "1fme.pdb", "2jof.pdb",
-##<150 "2jab.pdb","1ves.pdb","3q0h.pdb","2etd.pdb","2lyz.pdb","3sdh.pdb", "3ecf.pdb",
+
+#test_files=["4eoi.pdb","3cuq.pdb","1lnm.pdb","2ocf.pdb","2o6r.pdb","1nbw.pdb","7tim.pdb", "1vca.pdb", "1aq7.pdb", "1gfl.pdb"]
+test_files = [ "1GFL.pdb" ]
+
 f_out=open("Evaluation_PeptideBuilder_limited.txt","w")
 ##f_out.write("PDB\tPhi-Psi-50\tPhi-Psi-Omega-50\tAll_backbone-50\tPhi-Psi-150\tPhi-Psi-Omega-150\tAll_backbone-150\tPhi-Psi\tPhi-Psi-Omega\tAll_backbone\tlength\n")
 f_out.write("PDB\tlimited50\tlimited150\tlimited_full\tlength\n")
