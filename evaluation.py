@@ -279,9 +279,7 @@ def compare_structure(reference, alternate):
         
 def test_PeptideBuilder(pdb_code):
     # retrieve pdb file
-    pdbl=PDBList()
-    pdbl.retrieve_pdb_file(pdb_code, pdir=PDBdir)
-    pdb_file = "pdb%s.ent" % (pdb_code)
+    pdb_file = "%s_clean.pdb" % (pdb_code)
     
     # build backbone model from all angles and bond lengths
     structure_backbone= PeptideBuilder.make_structure_from_geos(build_backbone_model(pdb_file))
@@ -314,8 +312,8 @@ def test_PeptideBuilder(pdb_code):
          RMS_backbone )
     return output_line
 
-test_structures=["4eoi","3cuq","1lnm","2ocf","2o6r","1nbw","7tim", "1vca", "1aq7", "1gfl"]
-test_structures=["3cuq","1lnm","2ocf","2o6r","7tim", "1vca", "1aq7", "1gfl"]
+
+test_structures = [ "1aq7", "1gfl", "1nbw", "1vca", "2o6r", "3cuq", "7tim"  ]
 #test_structures = [ "1gfl" ]
 
 f_out=open("reconstructed_RMSDs.txt","w")
