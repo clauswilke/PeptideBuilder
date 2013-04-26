@@ -313,8 +313,7 @@ def test_PeptideBuilder(pdb_code):
     return output_line
 
 
-test_structures = [ "1aq7", "1gfl", "1nbw", "1vca", "2o6r", "3cuq", "7tim"  ]
-#test_structures = [ "1gfl" ]
+test_structures = [ "1aq7", "1gfl", "1nbw", "1vca", "2o6r", "2r83", "3cap", "3cuq", "3vni", "7tim"  ]
 
 f_out=open("reconstructed_RMSDs.txt","w")
 f_out.write("PDB-ID\t\tlengthPhi-Psi-50\tPhi-Psi-150\tPhi-Psi\tPhi-Psi-Omega-50\tPhi-Psi-Omega-150\tPhi-Psi-Omega\tAll-Angles-50\tAll-Angles-150\tAll-Angles\tBackbone-50\tBackbone-150\tBackbone\n")

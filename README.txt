@@ -13,8 +13,9 @@ basic use of the PeptideBuilder library.
 
 To test whether your installation works properly, run the script 'unitTests.py'
 and compare the resulting output to the files in 'unitTests.expected'. On
-unix, the shell script 'runUnitTests.sh' will do that for you. If the shell
-script doesn't find any differences (prints out only empty lines) then
-everything is working correctly.
+a unix machine unix, the shell script 'runUnitTests.sh' will do that for you.
+If the shell script doesn't find any differences (prints out only empty lines)
+then everything is working correctly.
 
-The script 'evaluation.py' reproduces the results presented in Table 1 of the PeptideBuilder manuscript.
+The script 'evaluation.py' reproduces the results presented in Table 1 of the
+PeptideBuilder manuscript.
