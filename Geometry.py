@@ -52,7 +52,7 @@ class AlaGeo(Geo):
 
         self.C_O_length=1.23
         self.CA_C_O_angle=120.5
-        self.N_CA_C_O_diangle= -60.5
+        self.N_CA_C_O_diangle=-60.5
 
         self.phi=-120
         self.psi_im1=140
@@ -93,7 +93,7 @@ class SerGeo(Geo):
 
         self.CB_OG_length=1.417
         self.CA_CB_OG_angle=110.773
-        self.N_CA_CB_OG_diangle=60.0
+        self.N_CA_CB_OG_diangle=-63.3
 
         self.residue_name= 'S'
 
@@ -102,7 +102,7 @@ class SerGeo(Geo):
             self.N_CA_CB_OG_diangle=rotamers[0]
         except IndexError:
             print "Input Rotamers List: not long enough"
-            self.N_CA_CB_OG_diangle=60.0
+            self.N_CA_CB_OG_diangle=-63.3
             
         
 
@@ -131,7 +131,7 @@ class CysGeo(Geo):
 
         self.CB_SG_length=1.808
         self.CA_CB_SG_angle=113.8169
-        self.N_CA_CB_SG_diangle=180.0
+        self.N_CA_CB_SG_diangle=-62.2
 
         self.residue_name= 'C'
 
@@ -140,7 +140,7 @@ class CysGeo(Geo):
             self.N_CA_CB_SG_diangle=rotamers[0]
         except IndexError:
             print "Input Rotamers List: not long enough"
-            self.N_CA_CB_SG_diangle=180.0
+            self.N_CA_CB_SG_diangle=-62.2
             
 class ValGeo(Geo):
     '''Geometry of Valine'''
@@ -207,15 +207,15 @@ class IleGeo(Geo):
 
         self.CB_CG1_length=1.527
         self.CA_CB_CG1_angle=110.7
-        self.N_CA_CB_CG1_diangle=177.2
+        self.N_CA_CB_CG1_diangle=-61.6
 
         self.CB_CG2_length=1.527
         self.CA_CB_CG2_angle=110.4
-        self.N_CA_CB_CG2_diangle=-63.3
+        self.N_CA_CB_CG2_diangle=59.7
 
         self.CG1_CD1_length=1.52
         self.CB_CG1_CD1_angle=113.97
-        self.CA_CB_CG1_CD1_diangle= 169.8
+        self.CA_CB_CG1_CD1_diangle=169.8
 
         self.residue_name= 'I'
 
@@ -226,8 +226,8 @@ class IleGeo(Geo):
             self.CA_CB_CG1_CD1_diangle=rotamers[2]
         except IndexError:
             print "Input Rotamers List: not long enough"
-            self.N_CA_CB_CG1_diangle=177.2
-            self.N_CA_CB_CG2_diangle=-63.3
+            self.N_CA_CB_CG1_diangle=-61.6
+            self.N_CA_CB_CG2_diangle=59.7
             self.CA_CB_CG1_CD1_diangle=169.8
             
 
@@ -267,11 +267,11 @@ class LeuGeo(Geo):
 
         self.CG_CD1_length=1.524
         self.CB_CG_CD1_angle=110.27
-        self.CA_CB_CG_CD1_diangle=-78.5
+        self.CA_CB_CG_CD1_diangle=174.9
 
         self.CG_CD2_length=1.525
         self.CB_CG_CD2_angle=110.58
-        self.CA_CB_CG_CD2_diangle=174.9
+        self.CA_CB_CG_CD2_diangle=66.7
 
         self.residue_name= 'L'
 
@@ -283,8 +283,8 @@ class LeuGeo(Geo):
         except IndexError:
             print "Input Rotamers List: not long enough"
             self.N_CA_CB_CG_diangle=-60.1
-            self.CA_CB_CG_CD1_diangle=-78.5
-            self.CA_CB_CG_CD2_diangle=174.9
+            self.CA_CB_CG_CD1_diangle=174.9
+            self.CA_CB_CG_CD2_diangle=66.7
             
             
 
@@ -320,11 +320,11 @@ class ThrGeo(Geo):
 
         self.CB_OG1_length=1.43
         self.CA_CB_OG1_angle=109.18
-        self.N_CA_CB_OG1_diangle= -60.3
+        self.N_CA_CB_OG1_diangle=-60.3
 
         self.CB_CG2_length=1.53
         self.CA_CB_CG2_angle=111.13
-        self.N_CA_CB_CG2_diangle= 60.0
+        self.N_CA_CB_CG2_diangle=60.0
 
         self.residue_name= 'T'
 
@@ -433,19 +433,19 @@ class LysGeo(Geo):
 
         self.CB_CG_length=1.52
         self.CA_CB_CG_angle=113.83
-        self.N_CA_CB_CG_diangle=-65.2
+        self.N_CA_CB_CG_diangle=-64.5
 
         self.CG_CD_length=1.52
         self.CB_CG_CD_angle=111.79
-        self.CA_CB_CG_CD_diangle=-179.2
+        self.CA_CB_CG_CD_diangle=-178.1
 
         self.CD_CE_length=1.46
         self.CG_CD_CE_angle=111.68
-        self.CB_CG_CD_CE_diangle=-179.3
+        self.CB_CG_CD_CE_diangle=-179.6
 
         self.CE_NZ_length=1.33
         self.CD_CE_NZ_angle=124.79
-        self.CG_CD_CE_NZ_diangle=-178.7
+        self.CG_CD_CE_NZ_diangle=179.6
 
         self.residue_name= 'K'
 
@@ -457,10 +457,10 @@ class LysGeo(Geo):
             self.CG_CD_CE_NZ_diangle=rotamers[3]
         except IndexError:
             print "Input Rotamers List: not long enough"
-            self.N_CA_CB_CG_diangle=-65.2
-            self.CA_CB_CG_CD_diangle=-179.2
-            self.CB_CG_CD_CE_diangle=-179.3
-            self.CG_CD_CE_NZ_diangle=-178.7
+            self.N_CA_CB_CG_diangle=-64.5
+            self.CA_CB_CG_CD_diangle=-178.1
+            self.CB_CG_CD_CE_diangle=-179.6
+            self.CG_CD_CE_NZ_diangle=179.6
 
     def generateRandomRotamers(self):
         rotamer_bins=[-60, 60, 180]
@@ -497,11 +497,11 @@ class AspGeo(Geo):
 
         self.CG_OD1_length=1.25
         self.CB_CG_OD1_angle=119.22
-        self.CA_CB_CG_OD1_diangle=0.0
+        self.CA_CB_CG_OD1_diangle=-46.7
 
         self.CG_OD2_length=1.25
         self.CB_CG_OD2_angle=118.218
-        self.CA_CB_CG_OD2_diangle=180.0
+        self.CA_CB_CG_OD2_diangle=180+self.CA_CB_CG_OD1_diangle
 
         self.residue_name= 'D'
 
@@ -516,8 +516,8 @@ class AspGeo(Geo):
         except IndexError:
             print "Input Rotamers List: not long enough"
             self.N_CA_CB_CG_diangle=-66.4
-            self.CA_CB_CG_OD1_diangle=0.0
-            self.CA_CB_CG_OD2_diangle=180.0
+            self.CA_CB_CG_OD1_diangle=-46.7
+            self.CA_CB_CG_OD2_diangle=180+self.CA_CB_CG_OD1_diangle
         
 
 class AsnGeo(Geo):
@@ -548,7 +548,7 @@ class AsnGeo(Geo):
 
         self.CG_OD1_length=1.23
         self.CB_CG_OD1_angle=120.85
-        self.CA_CB_CG_OD1_diangle=-25.7
+        self.CA_CB_CG_OD1_diangle=-58.3
 
         self.CG_ND2_length=1.33
         self.CB_CG_ND2_angle=116.48
@@ -567,7 +567,7 @@ class AsnGeo(Geo):
         except IndexError:
             print "Input Rotamers List: not long enough"
             self.N_CA_CB_CG_diangle=-65.5
-            self.CA_CB_CG_OD1_diangle=-25.7
+            self.CA_CB_CG_OD1_diangle=-58.3
             self.CA_CB_CG_ND2_diangle=180.0+self.CA_CB_CG_OD1_diangle
 
 class GluGeo(Geo):
@@ -661,7 +661,7 @@ class GlnGeo(Geo):
 
         self.CG_CD_length=1.52
         self.CB_CG_CD_angle=112.78
-        self.CA_CB_CG_CD_diangle=-180.0
+        self.CA_CB_CG_CD_diangle=-69.6
 
         self.CD_OE1_length=1.24
         self.CG_CD_OE1_angle=120.86
@@ -685,7 +685,7 @@ class GlnGeo(Geo):
         except IndexError:
             print "Input Rotamers List: not long enough"
             self.N_CA_CB_CG_diangle=-60.2
-            self.CA_CB_CG_CD_diangle=-180.0
+            self.CA_CB_CG_CD_diangle=-69.6
             self.CB_CG_CD_OE1_diangle=-50.5
             self.CB_CG_CD_NE2_diangle=180+self.CB_CG_CD_OE1_diangle
     
@@ -772,16 +772,16 @@ class HisGeo(Geo):
         self.N_C_CA_CB_diangle=122.6711
 
         self.CB_CG_length=1.49
-        self.CA_CB_CG_angle= 113.74
-        self.N_CA_CB_CG_diangle= -178.7
+        self.CA_CB_CG_angle=113.74
+        self.N_CA_CB_CG_diangle=-63.2
         
         self.CG_ND1_length=1.38
-        self.CB_CG_ND1_angle= 122.85
+        self.CB_CG_ND1_angle=122.85
         self.CA_CB_CG_ND1_diangle=-75.7          
 
         self.CG_CD2_length=1.35
         self.CB_CG_CD2_angle=130.61
-        self.CA_CB_CG_CD2_diangle= 180.0+self.CA_CB_CG_ND1_diangle
+        self.CA_CB_CG_CD2_diangle=180.0+self.CA_CB_CG_ND1_diangle
 
         self.ND1_CE1_length=1.32
         self.CG_ND1_CE1_angle=108.5
@@ -803,9 +803,9 @@ class HisGeo(Geo):
                 self.CA_CB_CG_CD2_diangle = rotamers[1]+180.0
         except IndexError:
             print "Input Rotamers List: not long enough"
-            self.N_CA_CB_CG_diangle=-178.7
+            self.N_CA_CB_CG_diangle=-63.2
             self.CA_CB_CG_ND1_diangle=-75.7
-            self.CA_CB_CG_CD2_diangle= 180.0+self.CA_CB_CG_ND1_diangle
+            self.CA_CB_CG_CD2_diangle=180.0+self.CA_CB_CG_ND1_diangle
 
 class ProGeo(Geo):
     '''Geometry of Proline'''
@@ -862,8 +862,8 @@ class PheGeo(Geo):
         self.N_C_CA_CB_diangle=122.6054
 
         self.CB_CG_length=1.50
-        self.CA_CB_CG_angle= 113.85
-        self.N_CA_CB_CG_diangle=-178.7
+        self.CA_CB_CG_angle=113.85
+        self.N_CA_CB_CG_diangle=-64.7
 
         self.CG_CD1_length=1.39
         self.CB_CG_CD1_angle=120.0
@@ -871,7 +871,7 @@ class PheGeo(Geo):
 
         self.CG_CD2_length=1.39
         self.CB_CG_CD2_angle=120.0
-        self.CA_CB_CG_CD2_diangle= self.CA_CB_CG_CD1_diangle-180.0
+        self.CA_CB_CG_CD2_diangle=self.CA_CB_CG_CD1_diangle-180.0
 
         self.CD1_CE1_length=1.39
         self.CG_CD1_CE1_angle=120.0
@@ -897,9 +897,9 @@ class PheGeo(Geo):
                 self.CA_CB_CG_CD2_diangle = rotamers[1]+180.0
         except IndexError:
             print "Input Rotamers List: not long enough"
-            self.N_CA_CB_CG_diangle=-178.7
+            self.N_CA_CB_CG_diangle=-64.7
             self.CA_CB_CG_CD1_diangle=93.3
-            self.CA_CB_CG_CD2_diangle= self.CA_CB_CG_CD1_diangle-180.0
+            self.CA_CB_CG_CD2_diangle=self.CA_CB_CG_CD1_diangle-180.0
 
 
 
@@ -931,11 +931,11 @@ class TyrGeo(Geo):
 
         self.CG_CD1_length=1.39
         self.CB_CG_CD1_angle=120.98
-        self.CA_CB_CG_CD1_diangle=-27.4
+        self.CA_CB_CG_CD1_diangle=93.1
 
         self.CG_CD2_length=1.39
         self.CB_CG_CD2_angle=120.82
-        self.CA_CB_CG_CD2_diangle= self.CA_CB_CG_CD1_diangle+180.0
+        self.CA_CB_CG_CD2_diangle=self.CA_CB_CG_CD1_diangle+180.0
 
         self.CD1_CE1_length=1.39
         self.CG_CD1_CE1_angle=120.0
@@ -966,8 +966,8 @@ class TyrGeo(Geo):
         except IndexError:
             print "Input Rotamers List: not long enough"
             self.N_CA_CB_CG_diangle=-64.3
-            self.CA_CB_CG_CD1_diangle=-27.4
-            self.CA_CB_CG_CD2_diangle= self.CA_CB_CG_CD1_diangle+180.0
+            self.CA_CB_CG_CD1_diangle=93.1
+            self.CA_CB_CG_CD2_diangle=self.CA_CB_CG_CD1_diangle+180.0
             
 
 class TrpGeo(Geo):
@@ -993,8 +993,8 @@ class TrpGeo(Geo):
         self.N_C_CA_CB_diangle=122.6112
 
         self.CB_CG_length=1.50
-        self.CA_CB_CG_angle= 114.10
-        self.N_CA_CB_CG_diangle=178.7
+        self.CA_CB_CG_angle=114.10
+        self.N_CA_CB_CG_diangle=-66.4
 
         self.CG_CD1_length=1.37
         self.CB_CG_CD1_angle=127.07
@@ -1040,7 +1040,7 @@ class TrpGeo(Geo):
                 self.CA_CB_CG_CD2_diangle = rotamers[1]+180.0
         except IndexError:
             print "Input Rotamers List: not long enough"
-            self.N_CA_CB_CG_diangle=178.7
+            self.N_CA_CB_CG_diangle=-66.4
             self.CA_CB_CG_CD1_diangle=96.3
             self.CA_CB_CG_CD2_diangle=self.CA_CB_CG_CD1_diangle-180.0
 
