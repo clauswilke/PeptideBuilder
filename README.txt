@@ -2,7 +2,8 @@ This is the PeptideBuilder library, written by Matthew A. Tien,
 Dariya K. Sydykova, Austin G. Meyer, and Claus O. Wilke.
 
 The software is provided to you under the GNU General Public
-License, version 2.0 or later.
+License, version 2.0 or later. The most up-to-date version of this software is
+available at https://github.com/mtien/PeptideBuilder.
 
 The files 'Geometry.py' and 'PeptideBuilder.py' constitute the PeptideBuilder
 library. They need to be placed into the search path of your python
