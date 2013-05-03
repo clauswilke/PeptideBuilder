@@ -1,5 +1,5 @@
 '''This module is part of the PeptideBuilder library,
-written by Matthew A. Tien, Dariya K. Sydykova,
+written by Matthew Z. Tien, Dariya K. Sydykova,
 Austin G. Meyer, and Claus O. Wilke.
 
 The Geometry module contains the default geometries of

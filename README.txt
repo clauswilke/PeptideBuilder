@@ -1,4 +1,4 @@
-This is the PeptideBuilder library, written by Matthew A. Tien,
+This is the PeptideBuilder library, written by Matthew Z. Tien,
 Dariya K. Sydykova, Austin G. Meyer, and Claus O. Wilke.
 
 The software is provided to you under the GNU General Public
