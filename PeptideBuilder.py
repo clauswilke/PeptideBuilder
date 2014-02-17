@@ -225,7 +225,7 @@ def makeIle(segID, N, CA, C, O, geo):
     CB_CG1_length=geo.CB_CG1_length
     CA_CB_CG1_angle=geo.CA_CB_CG1_angle
     N_CA_CB_CG1_diangle=geo.N_CA_CB_CG1_diangle 
-        
+    
     CB_CG2_length=geo.CB_CG2_length
     CA_CB_CG2_angle=geo.CA_CB_CG2_angle
     N_CA_CB_CG2_diangle= geo.N_CA_CB_CG2_diangle

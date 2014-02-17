@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/bin/sh
 
 # remove results from prior tests
 rm -f test?.*
