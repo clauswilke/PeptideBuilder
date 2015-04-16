@@ -207,11 +207,11 @@ class IleGeo(Geo):
 
         self.CB_CG1_length=1.527
         self.CA_CB_CG1_angle=110.7
-        self.N_CA_CB_CG1_diangle=-61.6
+        self.N_CA_CB_CG1_diangle=59.7
 
         self.CB_CG2_length=1.527
         self.CA_CB_CG2_angle=110.4
-        self.N_CA_CB_CG2_diangle=59.7
+        self.N_CA_CB_CG2_diangle=-61.6
 
         self.CG1_CD1_length=1.52
         self.CB_CG1_CD1_angle=113.97
@@ -320,11 +320,11 @@ class ThrGeo(Geo):
 
         self.CB_OG1_length=1.43
         self.CA_CB_OG1_angle=109.18
-        self.N_CA_CB_OG1_diangle=-60.3
+        self.N_CA_CB_OG1_diangle=60.0
 
         self.CB_CG2_length=1.53
         self.CA_CB_CG2_angle=111.13
-        self.N_CA_CB_CG2_diangle=60.0
+        self.N_CA_CB_CG2_diangle=-60.3
 
         self.residue_name= 'T'
 
