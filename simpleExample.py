@@ -7,7 +7,7 @@ The script generates a peptide consisting of six arginines in alpha-helix
 conformation, and it stores the peptide under the name "example.pdb".
 '''
 
-
+from __future__ import print_function
 import Geometry
 import PeptideBuilder
 

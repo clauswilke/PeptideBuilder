@@ -1,5 +1,5 @@
 #!/usr/bin/python
-
+from __future__ import print_function
 from Bio.PDB import *
 from Bio.PDB import PDBParser
 from Bio.PDB import Superimposer
