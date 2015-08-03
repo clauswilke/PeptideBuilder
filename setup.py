@@ -30,6 +30,6 @@ setup(name = 'PeptideBuilder',
     url = 'https://github.com/mtien/PeptideBuilder',
     download_url = 'https://github.com/smtien/PeptideBuilder/mypackage/tarball/0.0',
     platforms = 'Tested on Mac OS X.',
-    packages = ['PeptideBuilder', 'Geometry'],
+    packages = ['PeptideBuilder'],
     install_requires=['numpy>=1.7', 'math', 'Bio.PDB', 'random' ]
 )
