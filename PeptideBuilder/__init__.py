@@ -6,6 +6,6 @@ The package consists of the following Python modules:
 * PeptideBuilder
 * Geometry
 """
-__version__ = '0.0'
+__version__ = '1.3'
 from .PeptideBuilder import *
 from .Geometry import *
