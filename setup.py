@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 ##############################################################################
-##  pyvolve: Python platform for simulating evolutionary sequences.
+##  PeptideBuilder: builds peptide models in PDB format using geometrical inputs
 ##
 ##  Written by Matthew Z Tien (Matthew.Tien89@gmail.com) 
 ##############################################################################
@@ -14,19 +14,19 @@ To build and install the package as root (globally), enter (from this directory!
     
 To install for a particular user (locally), enter - 
     python setup.py build
-    python setup.py build --user # where user is the computer account to install pyolve in
+    python setup.py build --user # where user is the computer account to install PeptideBuilder in
 '''
 
 
 
 from setuptools import setup
 setup(name = 'PeptideBuilder', 
-    version = '1.1', 
+    version = '1.2', 
     description = 'Tools to create peptide PDB files using geometry as input',
     author = 'Matthew Z. Tien', 
     author_email = 'Matthew.Tien89@gmail.com', 
     url = 'https://github.com/mtien/PeptideBuilder',
-    download_url = 'https://github.com/smtien/PeptideBuilder/mypackage/tarball/1.1',
+    download_url = 'https://github.com/smtien/PeptideBuilder/mypackage/tarball/1.2',
     platforms = 'Tested on Mac OS X.',
     packages = ['PeptideBuilder'],
     install_requires=['math', 'Bio.PDB']
