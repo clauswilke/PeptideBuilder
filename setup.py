@@ -30,3 +30,4 @@ setup(name = 'PeptideBuilder',
     platforms = 'Tested on Mac OS X.',
     packages = ['PeptideBuilder'],
     install_requires=['math', 'Bio.PDB']
+)
