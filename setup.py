@@ -29,5 +29,4 @@ setup(name = 'PeptideBuilder',
     download_url = 'https://github.com/smtien/PeptideBuilder/mypackage/tarball/1.0',
     platforms = 'Tested on Mac OS X.',
     packages = ['PeptideBuilder'],
-    install_requires=['math', 'Bio.PDB', 'random' ]
-)
+    install_requires=['math', 'Bio.PDB']
