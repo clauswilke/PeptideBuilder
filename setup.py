@@ -21,13 +21,13 @@ To install for a particular user (locally), enter -
 
 from setuptools import setup
 setup(name = 'PeptideBuilder', 
-    version = '1.3', 
+    version = '1.0.1', 
     description = 'Tools to create peptide PDB files using geometry as input',
     author = 'Matthew Z. Tien', 
     author_email = 'Matthew.Tien89@gmail.com', 
     url = 'https://github.com/mtien/PeptideBuilder',
-    download_url = 'https://github.com/smtien/PeptideBuilder/mypackage/tarball/1.3',
+    download_url = 'https://github.com/smtien/PeptideBuilder/mypackage/tarball/1.0.1',
     platforms = 'Tested on Mac OS X.',
     packages = ['PeptideBuilder'],
-    install_requires=['Bio.PDB']
+    install_requires=['Biopython']
 )
