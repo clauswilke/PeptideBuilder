@@ -5,7 +5,7 @@ This script builds a variety of structures using all the major functionality in 
 '''
 
 from __future__ import print_function
-import Geometry
+from PeptideBuilder import Geometry
 import PeptideBuilder
 import Bio.PDB
 

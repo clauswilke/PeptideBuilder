@@ -22,7 +22,7 @@ from Bio.PDB.Model import *
 from Bio.PDB.Structure import *
 from Bio.PDB.Vector import *
 from Bio.PDB.Entity import*
-from Geometry import *
+from .Geometry import *
 import math, warnings
 
 

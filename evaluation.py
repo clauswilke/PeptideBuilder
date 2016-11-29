@@ -11,7 +11,7 @@ from Bio.PDB.Structure import *
 from Bio.PDB.Vector import *
 from Bio.PDB.Entity import*
 import math
-import Geometry
+from PeptideBuilder import Geometry
 import PeptideBuilder
 import numpy
 from os import path
