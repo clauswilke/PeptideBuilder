@@ -24,7 +24,7 @@ from Bio.PDB.Vector import *
 from Bio.PDB.Entity import*
 from .Geometry import *
 import math, warnings
-
+import numpy
 
 
 def get_prop(atm):
@@ -95,7 +95,7 @@ def calculateCoordinates(refA, refB, refC, L, ang, di):
     rot= rotaxis(math.pi*(di/180.0), CV-BV)
     D=(D-BV).left_multiply(rot)+BV
     
-    return D
+    return numpy.array(list(D))
 
 def makeGly(segID, N, CA, C, O, geo):
     '''Creates a Glycine residue'''
@@ -977,9 +977,9 @@ def initialize_res(residue):
     CA_C_length=geo.CA_C_length
     N_CA_C_angle=geo.N_CA_C_angle
     
-    CA_coord= [0.,0.,0.]
-    C_coord= [CA_C_length,0,0]
-    N_coord = [CA_N_length*math.cos(N_CA_C_angle*(math.pi/180.0)),CA_N_length*math.sin(N_CA_C_angle*(math.pi/180.0)),0]
+    CA_coord= numpy.array([0.,0.,0.])
+    C_coord= numpy.array([CA_C_length,0,0])
+    N_coord = numpy.array([CA_N_length*math.cos(N_CA_C_angle*(math.pi/180.0)),CA_N_length*math.sin(N_CA_C_angle*(math.pi/180.0)),0])
 
     N= Atom("N", N_coord, 0.0 , 1.0, " "," N", 0, "N")
     CA=Atom("CA", CA_coord, 0.0 , 1.0, " "," CA", 0,"C")
