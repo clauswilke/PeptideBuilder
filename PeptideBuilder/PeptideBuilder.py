@@ -95,7 +95,7 @@ def calculateCoordinates(refA, refB, refC, L, ang, di):
     rot= rotaxis(math.pi*(di/180.0), CV-BV)
     D=(D-BV).left_multiply(rot)+BV
     
-    return numpy.array(list(D))
+    return D.get_array()
 
 def makeGly(segID, N, CA, C, O, geo):
     '''Creates a Glycine residue'''
