@@ -21,7 +21,7 @@ To install for a particular user (locally), enter -
 
 from setuptools import setup
 setup(name = 'PeptideBuilder', 
-    version = '1.0.2', 
+    version = '1.0.3', 
     description = 'Tools to create peptide PDB files using geometry as input',
     author = 'Matthew Z. Tien', 
     author_email = 'Matthew.Tien89@gmail.com', 
