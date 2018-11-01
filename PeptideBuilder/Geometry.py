@@ -7,8 +7,7 @@ all 20 amino acids. The main function to be used is the
 geometry() function, which returns the default geometry
 for the requested amino acid.
 
-This file is provided to you under the GNU General Public
-License, version 2.0 or later.'''
+This file is provided to you under the MIT License.'''
 
 from __future__ import print_function
 import random

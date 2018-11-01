@@ -10,8 +10,7 @@ default bond lengths and angles for all amino acids.
 This module also requires the Bio.PDB module from
 Biopython, for structure manipulation.
 
-This file is provided to you under the GNU General Public
-License, version 2.0 or later.'''
+This file is provided to you under the MIT License.'''
 
 from __future__ import print_function
 from Bio.PDB import *

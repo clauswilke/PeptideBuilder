@@ -5,9 +5,9 @@ Reference:
 M. Z. Tien, D. K. Sydykova, A. G. Meyer, C. O. Wilke (2013). PeptideBuilder:
 A simple Python library to generate model peptides. PeerJ 1:e80.
 
-The software is provided to you under the GNU General Public
-License, version 2.0 or later. The most up-to-date version of this software is
-available at https://github.com/mtien/PeptideBuilder.
+The software is provided to you under the MIT license (see file LICENSE).
+The most up-to-date version of this software is available at
+https://github.com/mtien/PeptideBuilder.
 
 The files 'Geometry.py' and 'PeptideBuilder.py' constitute the PeptideBuilder
 library. They need to be placed into the search path of your python
