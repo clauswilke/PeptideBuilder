@@ -19,7 +19,7 @@ from Bio.PDB.Residue import *
 from Bio.PDB.Chain import *
 from Bio.PDB.Model import *
 from Bio.PDB.Structure import *
-from Bio.PDB.Vector import *
+from Bio.PDB.vectors import *
 from Bio.PDB.Entity import*
 from .Geometry import *
 import math, warnings
