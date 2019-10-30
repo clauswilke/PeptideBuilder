@@ -27,7 +27,7 @@ setup(name = 'PeptideBuilder',
     author_email = 'Matthew.Tien89@gmail.com', 
     url = 'https://github.com/mtien/PeptideBuilder',
     download_url = 'https://github.com/mtien/PeptideBuilder/archive/v1.0.4.tar.gz',
-    platforms = 'Tested on Mac OS X.',
+    platforms = 'Tested on Mac OS X and Windows 10',
     packages = ['PeptideBuilder'],
     install_requires=['Biopython']
 )
