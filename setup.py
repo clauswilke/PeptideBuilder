@@ -1,32 +1,24 @@
-#!/usr/bin/python
-
-##############################################################################
-##  PeptideBuilder: builds peptide models in PDB format using geometrical inputs
-##
-##  Written by Matthew Z Tien (Matthew.Tien89@gmail.com) 
-##############################################################################
-
-'''
-Setup.py script (uses setuptools) for building, testing, and installing PeptideBuilder.
-To build and install the package as root (globally), enter (from this directory!) - 
-    sudo python setup.py build
-    sudo python setup.py install
-    
-To install for a particular user (locally), enter - 
-    python setup.py build
-    python setup.py build --user # where user is the computer account to install PeptideBuilder in
-'''
-
-
-
 from setuptools import setup
+
+with open("README.md", "r") as f:
+    long_description = f.read()
+
+with open("PeptideBuilder/__init__.py", "r") as f:
+    init = f.readlines()
+
+for line in init:
+    if '__version__' in line:
+        __version__ = line.split("'")[-2]
+
 setup(name = 'PeptideBuilder', 
-    version = '1.0.4', 
-    description = 'Tools to create peptide PDB files using geometry as input',
+    version = __version__, 
     author = 'Matthew Z. Tien', 
     author_email = 'Matthew.Tien89@gmail.com', 
+    description = 'Create peptide PDB files with specified geometry',
+    long_description=long_description,
+    long_description_content_type='ext/markdown',
     url = 'https://github.com/mtien/PeptideBuilder',
-    download_url = 'https://github.com/mtien/PeptideBuilder/archive/v1.0.4.tar.gz',
+    download_url = 'https://github.com/mtien/PeptideBuilder/releases',
     platforms = 'Tested on Mac OS X and Windows 10',
     packages = ['PeptideBuilder'],
     install_requires=['Biopython']
