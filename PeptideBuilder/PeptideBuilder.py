@@ -13,6 +13,7 @@ Biopython, for structure manipulation.
 This file is provided to you under the MIT License.'''
 
 import math, warnings
+from typing import List, Optional
 
 from Bio.PDB.Polypeptide import is_aa
 from Bio.PDB.Atom import Atom
@@ -1198,7 +1199,7 @@ def add_residue(structure, residue, phi=-120, psi_im1=140, omega=-370):
     
 
     
-def make_structure(AA_chain,phi,psi_im1,omega=[]):
+def make_structure(AA_chain: str, phi: List[float], psi_im1: List[float], omega: Optional[List] = None):
     '''Place a sequence of amino acids into a peptide with specified
     backbone dihedral angles. The argument AA_chain holds the
     sequence of amino acids to be used. The arguments phi and psi_im1 hold
@@ -1209,7 +1210,7 @@ def make_structure(AA_chain,phi,psi_im1,omega=[]):
     geo = geometry(AA_chain[0])
     struc=initialize_res(geo)
 
-    if len(omega)==0:
+    if omega is None or not len(omega):
         for i in range(1,len(AA_chain)): 
             AA = AA_chain[i]
             add_residue(struc, AA, phi[i-1], psi_im1[i-1])
@@ -1221,7 +1222,7 @@ def make_structure(AA_chain,phi,psi_im1,omega=[]):
     return struc
     
     
-def make_structure_from_geos(geos):
+def make_structure_from_geos(geos: List[Geo]):
     '''Creates a structure out of a list of geometry objects.'''
     model_structure=initialize_res(geos[0])
     for i in range(1,len(geos)):

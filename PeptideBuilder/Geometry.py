@@ -10,6 +10,8 @@ for the requested amino acid.
 This file is provided to you under the MIT License.'''
 
 import random
+from typing import List
+
 
 class Geo():
     '''Geometry base class'''
@@ -95,14 +97,13 @@ class SerGeo(Geo):
 
         self.residue_name= 'S'
 
-    def inputRotamers(self, rotamers):
+    def inputRotamers(self, rotamers: List[float]):
         try:
             self.N_CA_CB_OG_diangle=rotamers[0]
         except IndexError:
             print("Input Rotamers List: not long enough")
             self.N_CA_CB_OG_diangle=-63.3
-            
-        
+
 
 class CysGeo(Geo):
     '''Geometry of Cystine'''
@@ -133,7 +134,7 @@ class CysGeo(Geo):
 
         self.residue_name= 'C'
 
-    def inputRotamers(self, rotamers):
+    def inputRotamers(self, rotamers: List[float]):
         try:
             self.N_CA_CB_SG_diangle=rotamers[0]
         except IndexError:
@@ -172,7 +173,7 @@ class ValGeo(Geo):
 
         self.residue_name= 'V'
 
-    def inputRotamers(self, rotamers):
+    def inputRotamers(self, rotamers: List[float]):
         try:
             self.N_CA_CB_CG1_diangle=rotamers[0]
             self.N_CA_CB_CG2_diangle=rotamers[1]
@@ -217,7 +218,7 @@ class IleGeo(Geo):
 
         self.residue_name= 'I'
 
-    def inputRotamers(self, rotamers):
+    def inputRotamers(self, rotamers: List[float]):
         try:
             self.N_CA_CB_CG1_diangle=rotamers[0]
             self.N_CA_CB_CG2_diangle=rotamers[1]
@@ -273,7 +274,7 @@ class LeuGeo(Geo):
 
         self.residue_name= 'L'
 
-    def inputRotamers(self, rotamers):
+    def inputRotamers(self, rotamers: List[float]):
         try: 
             self.N_CA_CB_CG_diangle=rotamers[0]
             self.CA_CB_CG_CD1_diangle=rotamers[1]
@@ -326,7 +327,7 @@ class ThrGeo(Geo):
 
         self.residue_name= 'T'
 
-    def inputRotamers(self, rotamers):
+    def inputRotamers(self, rotamers: List[float]):
         try:
             self.N_CA_CB_OG1_diangle=rotamers[0]
             self.N_CA_CB_OG2_diangle=rotamers[1]
@@ -383,7 +384,7 @@ class ArgGeo(Geo):
 
         self.residue_name= 'R'
 
-    def inputRotamers(self, rotamers):
+    def inputRotamers(self, rotamers: List[float]):
         try:
             self.N_CA_CB_CG_diangle=rotamers[0]
             self.CA_CB_CG_CD_diangle=rotamers[1]
@@ -447,7 +448,7 @@ class LysGeo(Geo):
 
         self.residue_name= 'K'
 
-    def inputRotamers(self, rotamers):
+    def inputRotamers(self, rotamers: List[float]):
         try:
             self.N_CA_CB_CG_diangle=rotamers[0]
             self.CA_CB_CG_CD_diangle=rotamers[1]
@@ -503,7 +504,7 @@ class AspGeo(Geo):
 
         self.residue_name= 'D'
 
-    def inputRotamers(self, rotamers):
+    def inputRotamers(self, rotamers: List[float]):
         try:
             self.N_CA_CB_CG_diangle=rotamers[0]
             self.CA_CB_CG_OD1_diangle=rotamers[1]
@@ -554,7 +555,7 @@ class AsnGeo(Geo):
 
         self.residue_name= 'N'
 
-    def inputRotamers(self, rotamers):
+    def inputRotamers(self, rotamers: List[float]):
         try:
             self.N_CA_CB_CG_diangle=rotamers[0]
             self.CA_CB_CG_OD1_diangle=rotamers[1]
@@ -608,7 +609,7 @@ class GluGeo(Geo):
 
         self.residue_name= 'E'
 
-    def inputRotamers(self, rotamers):
+    def inputRotamers(self, rotamers: List[float]):
         try:
             self.N_CA_CB_CG_diangle=rotamers[0]
             self.CA_CB_CG_CD_diangle=rotamers[1]
@@ -671,7 +672,7 @@ class GlnGeo(Geo):
 
         self.residue_name= 'Q'
 
-    def inputRotamers(self, rotamers):
+    def inputRotamers(self, rotamers: List[float]):
         try:
             self.N_CA_CB_CG_diangle=rotamers[0]
             self.CA_CB_CG_CD_diangle=rotamers[1]
@@ -729,7 +730,7 @@ class MetGeo(Geo):
         self.CB_CG_SD_CE_diangle=70.1
 
         self.residue_name= 'M'
-    def inputRotamers(self, rotamer):
+    def inputRotamers(self, rotamer: List[float]):
         try:
             self.N_CA_CB_CG_diangle=rotamer[0]
             self.CA_CB_CG_SD_diangle=rotamer[1]
@@ -791,7 +792,7 @@ class HisGeo(Geo):
 
         self.residue_name= 'H'
 
-    def inputRotamers(self, rotamers):
+    def inputRotamers(self, rotamers: List[float]):
         try:
             self.N_CA_CB_CG_diangle=rotamers[0]
             self.CA_CB_CG_ND1_diangle=rotamers[1]
@@ -885,7 +886,7 @@ class PheGeo(Geo):
 
         self.residue_name= 'F'
 
-    def inputRotamers(self, rotamers):
+    def inputRotamers(self, rotamers: List[float]):
         try:
             self.N_CA_CB_CG_diangle=rotamers[0]
             self.CA_CB_CG_CD1_diangle=rotamers[1]
@@ -953,7 +954,7 @@ class TyrGeo(Geo):
 
         self.residue_name= 'Y'
 
-    def inputRotamers(self, rotamers):
+    def inputRotamers(self, rotamers: List[float]):
         try:
             self.N_CA_CB_CG_diangle=rotamers[0]
             self.CA_CB_CG_CD1_diangle=rotamers[1]
@@ -1028,7 +1029,7 @@ class TrpGeo(Geo):
 
         self.residue_name= 'W'
 
-    def inputRotamers(self, rotamers):
+    def inputRotamers(self, rotamers: List[float]):
         try:
             self.N_CA_CB_CG_diangle=rotamers[0]
             self.CA_CB_CG_CD1_diangle=rotamers[1]
@@ -1042,7 +1043,7 @@ class TrpGeo(Geo):
             self.CA_CB_CG_CD1_diangle=96.3
             self.CA_CB_CG_CD2_diangle=self.CA_CB_CG_CD1_diangle-180.0
 
-def geometry(AA):
+def geometry(AA: str):
     '''Generates the geometry of the requested amino acid.
     The amino acid needs to be specified by its single-letter
     code. If an invalid code is specified, the function
