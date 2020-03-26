@@ -12,7 +12,6 @@ Biopython, for structure manipulation.
 
 This file is provided to you under the MIT License.'''
 
-from __future__ import print_function
 import math, warnings
 
 from Bio.PDB.Polypeptide import is_aa
