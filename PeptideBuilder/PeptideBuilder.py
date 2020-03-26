@@ -13,17 +13,17 @@ Biopython, for structure manipulation.
 This file is provided to you under the MIT License.'''
 
 from __future__ import print_function
-from Bio.PDB import *
-from Bio.PDB.Atom import *
-from Bio.PDB.Residue import *
-from Bio.PDB.Chain import *
-from Bio.PDB.Model import *
-from Bio.PDB.Structure import *
-from Bio.PDB.vectors import *
-from Bio.PDB.Entity import*
-from .Geometry import *
 import math, warnings
+
+from Bio.PDB.Polypeptide import is_aa
+from Bio.PDB import Residue, Atom
+from Bio.PDB.Chain import Chain
+from Bio.PDB.Model import Model
+from Bio.PDB.Structure import Structure
+from Bio.PDB.vectors import Vector, rotaxis, calc_dihedral
 import numpy
+
+from .Geometry import geometry, Geo
 
 
 def get_prop(atm):
