@@ -15,6 +15,26 @@ from typing import List
 
 class Geo():
     '''Geometry base class'''
+    residue_name: str
+
+    # Geometry to bring together residue
+    peptide_bond: float
+    CA_C_N_angle: float
+    C_N_CA_angle: float
+
+    # Backbone coordinates
+    N_CA_C_angle: float
+    CA_N_length: float
+    CA_C_length: float
+    phi: float
+    psi_im1: float
+    omega: float
+
+    # Carbonyl atom
+    C_O_length: float
+    CA_C_O_angle: float
+    N_CA_C_O_diangle: float
+
     def __repr__(self):
         repr = ""
         for var in dir(self):

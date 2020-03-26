@@ -13,7 +13,7 @@ Biopython, for structure manipulation.
 This file is provided to you under the MIT License.'''
 
 import math, warnings
-from typing import List, Optional
+from typing import List, Optional, Union
 
 from Bio.PDB.Polypeptide import is_aa
 from Bio.PDB.Atom import Atom
@@ -1008,7 +1008,7 @@ def make_res_of_type(segID: int, N, CA, C, O, geo: Geo) -> Residue:
     return res
 
 
-def initialize_res(residue):
+def initialize_res(residue: Union[Geo, str]) -> Structure:
     '''Creates a new structure containing a single amino acid. The type and
     geometry of the amino acid are determined by the argument, which has to be
     either a geometry object or a single-letter amino acid code.
@@ -1016,8 +1016,10 @@ def initialize_res(residue):
     
     if isinstance( residue, Geo ):
         geo = residue
+    elif isinstance(residue, str):
+        geo=geometry(residue)
     else:
-        geo=geometry(residue) 
+        raise ValueError("Invalid residue argument:", residue)
     
     segID=1
     AA= geo.residue_name
@@ -1054,7 +1056,7 @@ def initialize_res(residue):
     return struc
 
 
-def getReferenceResidue(structure):
+def getReferenceResidue(structure: Structure) -> Residue:
     '''Returns the last residue of chain A model 0 of the given structure.
     
     This function is a helper function that should not normally be called
@@ -1071,7 +1073,7 @@ def getReferenceResidue(structure):
         
     return resRef
 
-def add_residue_from_geo(structure, geo):
+def add_residue_from_geo(structure: Structure, geo: Geo) -> Structure:
     '''Adds a residue to chain A model 0 of the given structure, and
     returns the new structure. The residue to be added is determined by
     the geometry object given as second argument.
@@ -1088,7 +1090,7 @@ def add_residue_from_geo(structure, geo):
     CA_C_N_angle=geo.CA_C_N_angle
     C_N_CA_angle=geo.C_N_CA_angle
 
-    ##Backbone Coordinages
+    ##Backbone Coordinates
     N_CA_C_angle=geo.N_CA_C_angle
     CA_N_length=geo.CA_N_length
     CA_C_length=geo.CA_C_length
@@ -1124,7 +1126,7 @@ def add_residue_from_geo(structure, geo):
     return structure
 
 
-def make_extended_structure(AA_chain):
+def make_extended_structure(AA_chain: str) -> Structure:
     '''Place a sequence of amino acids into a peptide in the extended
     conformation. The argument AA_chain holds the sequence of amino
     acids to be used.'''
@@ -1139,7 +1141,7 @@ def make_extended_structure(AA_chain):
     return struc
 
     
-def add_residue(structure, residue, phi=-120, psi_im1=140, omega=-370):
+def add_residue(structure: Structure, residue: Union[Geo, str], phi=-120, psi_im1=140, omega=-370) -> Structure:
     '''Adds a residue to chain A model 0 of the given structure, and
     returns the new structure. The residue to be added can be specified
     in two ways: either as a geometry object (in which case
@@ -1153,19 +1155,20 @@ def add_residue(structure, residue, phi=-120, psi_im1=140, omega=-370):
     
     if isinstance( residue, Geo ):
         geo = residue
-    else:
+    elif isinstance( residue, str):
         geo=geometry(residue) 
         geo.phi=phi
         geo.psi_im1=psi_im1
         if omega>-361:
             geo.omega=omega
+    else:
+        raise ValueError("Invalid residue argument:", residue)
     
-    add_residue_from_geo(structure, geo)
-    return structure
+    return add_residue_from_geo(structure, geo)
     
 
     
-def make_structure(AA_chain: str, phi: List[float], psi_im1: List[float], omega: Optional[List] = None):
+def make_structure(AA_chain: str, phi: List[float], psi_im1: List[float], omega: Optional[List] = None) -> Structure:
     '''Place a sequence of amino acids into a peptide with specified
     backbone dihedral angles. The argument AA_chain holds the
     sequence of amino acids to be used. The arguments phi and psi_im1 hold
@@ -1188,7 +1191,7 @@ def make_structure(AA_chain: str, phi: List[float], psi_im1: List[float], omega:
     return struc
     
     
-def make_structure_from_geos(geos: List[Geo]):
+def make_structure_from_geos(geos: List[Geo]) -> Structure:
     '''Creates a structure out of a list of geometry objects.'''
     model_structure=initialize_res(geos[0])
     for i in range(1,len(geos)):
