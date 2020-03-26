@@ -960,39 +960,8 @@ def makeTrp(segID: int, N, CA, C, O, geo: TrpGeo) -> Residue:
     res.add(CH2)
     return res
 
-def initialize_res(residue):
-    '''Creates a new structure containing a single amino acid. The type and
-    geometry of the amino acid are determined by the argument, which has to be
-    either a geometry object or a single-letter amino acid code.
-    The amino acid will be placed into chain A of model 0.'''
-    
-    if isinstance( residue, Geo ):
-        geo = residue
-    else:
-        geo=geometry(residue) 
-    
-    segID=1
-    AA= geo.residue_name
-    CA_N_length=geo.CA_N_length
-    CA_C_length=geo.CA_C_length
-    N_CA_C_angle=geo.N_CA_C_angle
-    
-    CA_coord= numpy.array([0.,0.,0.])
-    C_coord= numpy.array([CA_C_length,0,0])
-    N_coord = numpy.array([CA_N_length*math.cos(N_CA_C_angle*(math.pi/180.0)),CA_N_length*math.sin(N_CA_C_angle*(math.pi/180.0)),0])
 
-    N= Atom("N", N_coord, 0.0 , 1.0, " "," N", 0, "N")
-    CA=Atom("CA", CA_coord, 0.0 , 1.0, " "," CA", 0,"C")
-    C= Atom("C", C_coord, 0.0, 1.0, " ", " C",0,"C")
-
-    ##Create Carbonyl atom (to be moved later)
-    C_O_length=geo.C_O_length
-    CA_C_O_angle=geo.CA_C_O_angle
-    N_CA_C_O_diangle=geo.N_CA_C_O_diangle
-    
-    carbonyl=calculateCoordinates(N, CA, C, C_O_length, CA_C_O_angle, N_CA_C_O_diangle)
-    O= Atom("O",carbonyl , 0.0 , 1.0, " "," O", 0, "O")
-
+def make_res_of_type(segID: int, N, CA, C, O, geo: Geo) -> Residue:
     if isinstance(geo, GlyGeo):
         res=makeGly(segID, N, CA, C, O, geo)
     elif isinstance(geo, AlaGeo):
@@ -1035,6 +1004,44 @@ def initialize_res(residue):
         res=makeTrp(segID, N, CA, C, O, geo)
     else:
         res=makeGly(segID, N, CA, C, O, geo)
+
+    return res
+
+
+def initialize_res(residue):
+    '''Creates a new structure containing a single amino acid. The type and
+    geometry of the amino acid are determined by the argument, which has to be
+    either a geometry object or a single-letter amino acid code.
+    The amino acid will be placed into chain A of model 0.'''
+    
+    if isinstance( residue, Geo ):
+        geo = residue
+    else:
+        geo=geometry(residue) 
+    
+    segID=1
+    AA= geo.residue_name
+    CA_N_length=geo.CA_N_length
+    CA_C_length=geo.CA_C_length
+    N_CA_C_angle=geo.N_CA_C_angle
+    
+    CA_coord= numpy.array([0.,0.,0.])
+    C_coord= numpy.array([CA_C_length,0,0])
+    N_coord = numpy.array([CA_N_length*math.cos(N_CA_C_angle*(math.pi/180.0)),CA_N_length*math.sin(N_CA_C_angle*(math.pi/180.0)),0])
+
+    N= Atom("N", N_coord, 0.0 , 1.0, " "," N", 0, "N")
+    CA=Atom("CA", CA_coord, 0.0 , 1.0, " "," CA", 0,"C")
+    C= Atom("C", C_coord, 0.0, 1.0, " ", " C",0,"C")
+
+    ##Create Carbonyl atom (to be moved later)
+    C_O_length=geo.C_O_length
+    CA_C_O_angle=geo.CA_C_O_angle
+    N_CA_C_O_diangle=geo.N_CA_C_O_diangle
+    
+    carbonyl=calculateCoordinates(N, CA, C, C_O_length, CA_C_O_angle, N_CA_C_O_diangle)
+    O= Atom("O",carbonyl , 0.0 , 1.0, " "," O", 0, "O")
+
+    res = make_res_of_type(segID, N, CA, C, O, geo)
 
     cha= Chain('A')
     cha.add(res)
@@ -1106,48 +1113,7 @@ def add_residue_from_geo(structure, geo):
     carbonyl=calculateCoordinates(N, CA, C, C_O_length, CA_C_O_angle, N_CA_C_O_diangle)
     O= Atom("O",carbonyl , 0.0 , 1.0, " "," O", 0, "O")
     
-    if isinstance(geo, GlyGeo):
-        res=makeGly(segID, N, CA, C, O, geo)
-    elif isinstance(geo, AlaGeo):
-        res=makeAla(segID, N, CA, C, O, geo)
-    elif isinstance(geo, SerGeo):
-        res=makeSer(segID, N, CA, C, O, geo)
-    elif isinstance(geo, CysGeo):
-        res=makeCys(segID, N, CA, C, O, geo)
-    elif isinstance(geo, ValGeo):
-        res=makeVal(segID, N, CA, C, O, geo)
-    elif isinstance(geo, IleGeo):
-        res=makeIle(segID, N, CA, C, O, geo)
-    elif isinstance(geo, LeuGeo):
-        res=makeLeu(segID, N, CA, C, O, geo)
-    elif isinstance(geo, ThrGeo):
-        res=makeThr(segID, N, CA, C, O, geo)
-    elif isinstance(geo, ArgGeo):
-        res=makeArg(segID, N, CA, C, O, geo)
-    elif isinstance(geo, LysGeo):
-        res=makeLys(segID, N, CA, C, O, geo)
-    elif isinstance(geo, AspGeo):
-        res=makeAsp(segID, N, CA, C, O, geo)
-    elif isinstance(geo, GluGeo):
-        res=makeGlu(segID, N, CA, C, O, geo)
-    elif isinstance(geo, AsnGeo):
-        res=makeAsn(segID, N, CA, C, O, geo)
-    elif isinstance(geo, GlnGeo):
-        res=makeGln(segID, N, CA, C, O, geo)
-    elif isinstance(geo, MetGeo):
-        res=makeMet(segID, N, CA, C, O, geo)
-    elif isinstance(geo, HisGeo):
-        res=makeHis(segID, N, CA, C, O, geo)
-    elif isinstance(geo, ProGeo):
-        res=makePro(segID, N, CA, C, O, geo)
-    elif isinstance(geo, PheGeo):
-        res=makePhe(segID, N, CA, C, O, geo)
-    elif isinstance(geo, TyrGeo):
-        res=makeTyr(segID, N, CA, C, O, geo)
-    elif isinstance(geo, TrpGeo):
-        res=makeTrp(segID, N, CA, C, O, geo)
-    else:
-        res=makeGly(segID, N, CA, C, O, geo)
+    res = make_res_of_type(segID, N, CA, C, O, geo)
 
     resRef['O'].set_coord(calculateCoordinates(res['N'], resRef['CA'], resRef['C'], C_O_length, CA_C_O_angle, 180.0))
 
