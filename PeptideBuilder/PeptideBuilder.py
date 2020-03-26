@@ -24,7 +24,7 @@ from Bio.PDB.Structure import Structure
 from Bio.PDB.vectors import Vector, rotaxis, calc_dihedral
 import numpy
 
-from .Geometry import geometry, Geo
+from .Geometry import AlaGeo, ArgGeo, AsnGeo, AspGeo, CysGeo, GlnGeo, GluGeo, GlyGeo, HisGeo, IleGeo, LeuGeo, LysGeo, MetGeo, PheGeo, ProGeo, SerGeo, ThrGeo, TrpGeo, TyrGeo, ValGeo, geometry, Geo
 
 
 def get_prop(atm):
@@ -97,7 +97,7 @@ def calculateCoordinates(refA, refB, refC, L, ang, di):
     
     return D.get_array()
 
-def makeGly(segID, N, CA, C, O, geo):
+def makeGly(segID: int, N, CA, C, O, geo: Geo) -> Residue:
     '''Creates a Glycine residue'''
     ##Create Residue Data Structure
     res= Residue((' ', segID, ' '), "GLY", '    ')
@@ -110,7 +110,7 @@ def makeGly(segID, N, CA, C, O, geo):
     ##print(res)
     return res
 
-def makeAla(segID, N, CA, C, O, geo):
+def makeAla(segID: int, N, CA, C, O, geo: AlaGeo) -> Residue:
     '''Creates an Alanine residue'''
     ##R-Group
     CA_CB_length=geo.CA_CB_length
@@ -129,7 +129,7 @@ def makeAla(segID, N, CA, C, O, geo):
     res.add(CB)
     return res
 
-def makeSer(segID, N, CA, C, O, geo):
+def makeSer(segID: int, N, CA, C, O, geo: SerGeo) -> Residue:
     '''Creates a Serine residue'''
     ##R-Group
     CA_CB_length=geo.CA_CB_length
@@ -157,7 +157,7 @@ def makeSer(segID, N, CA, C, O, geo):
     ##print(res)
     return res
 
-def makeCys(segID, N, CA, C, O, geo):
+def makeCys(segID: int, N, CA, C, O, geo: CysGeo) -> Residue:
     '''Creates a Cysteine residue'''
     ##R-Group
     CA_CB_length=geo.CA_CB_length
@@ -183,7 +183,7 @@ def makeCys(segID, N, CA, C, O, geo):
     res.add(SG)
     return res
 
-def makeVal(segID, N, CA, C, O, geo):
+def makeVal(segID: int, N, CA, C, O, geo: ValGeo) -> Residue:
     '''Creates a Valine residue'''
     ##R-Group
     CA_CB_length=geo.CA_CB_length
@@ -216,7 +216,7 @@ def makeVal(segID, N, CA, C, O, geo):
     res.add(CG2)
     return res
 
-def makeIle(segID, N, CA, C, O, geo):
+def makeIle(segID: int, N, CA, C, O, geo: IleGeo) -> Residue:
     '''Creates an Isoleucine residue'''
     ##R-group
     CA_CB_length=geo.CA_CB_length
@@ -256,7 +256,7 @@ def makeIle(segID, N, CA, C, O, geo):
     res.add(CD1)
     return res
 
-def makeLeu(segID, N, CA, C, O, geo):
+def makeLeu(segID: int, N, CA, C, O, geo: LeuGeo) -> Residue:
     '''Creates a Leucine residue'''
     ##R-Group
     CA_CB_length=geo.CA_CB_length
@@ -296,7 +296,7 @@ def makeLeu(segID, N, CA, C, O, geo):
     res.add(CD2)
     return res
     
-def makeThr(segID, N, CA, C, O, geo):
+def makeThr(segID: int, N, CA, C, O, geo: ThrGeo) -> Residue:
     '''Creates a Threonine residue'''
     ##R-Group
     CA_CB_length=geo.CA_CB_length
@@ -329,7 +329,7 @@ def makeThr(segID, N, CA, C, O, geo):
     res.add(CG2)
     return res
 
-def makeArg(segID, N, CA, C, O, geo):
+def makeArg(segID: int, N, CA, C, O, geo: ArgGeo) -> Residue:
     '''Creates an Arginie residue'''
     ##R-Group
     CA_CB_length=geo.CA_CB_length
@@ -390,7 +390,7 @@ def makeArg(segID, N, CA, C, O, geo):
     res.add(NH2)
     return res
 
-def makeLys(segID, N, CA, C, O, geo):
+def makeLys(segID: int, N, CA, C, O, geo: LysGeo) -> Residue:
     '''Creates a Lysine residue'''
     ##R-Group
     CA_CB_length=geo.CA_CB_length
@@ -437,7 +437,7 @@ def makeLys(segID, N, CA, C, O, geo):
     res.add(NZ)
     return res
 
-def makeAsp(segID, N, CA, C, O, geo):
+def makeAsp(segID: int, N, CA, C, O, geo: AspGeo) -> Residue:
     '''Creates an Aspartic Acid residue'''
     ##R-Group
     CA_CB_length=geo.CA_CB_length
@@ -517,7 +517,7 @@ def makeAsn(segID,N, CA, C, O, geo):
     res.add(ND2)
     return res
 
-def makeGlu(segID, N, CA, C, O, geo):
+def makeGlu(segID: int, N, CA, C, O, geo: GluGeo) -> Residue:
     '''Creates a Glutamic Acid residue'''
     ##R-Group
     CA_CB_length=geo.CA_CB_length
@@ -565,7 +565,7 @@ def makeGlu(segID, N, CA, C, O, geo):
     res.add(OE2)
     return res
 
-def makeGln(segID, N, CA, C, O, geo):
+def makeGln(segID: int, N, CA, C, O, geo: GlnGeo) -> Residue:
     '''Creates a Glutamine residue'''
     ##R-Group
     CA_CB_length=geo.CA_CB_length
@@ -614,7 +614,7 @@ def makeGln(segID, N, CA, C, O, geo):
     res.add(NE2)
     return res
 
-def makeMet(segID, N, CA, C, O, geo):
+def makeMet(segID: int, N, CA, C, O, geo: MetGeo) -> Residue:
     '''Creates a Methionine residue'''
     ##R-Group
     CA_CB_length=geo.CA_CB_length
@@ -654,7 +654,7 @@ def makeMet(segID, N, CA, C, O, geo):
     res.add(CE)
     return res
 
-def makeHis(segID, N, CA, C, O, geo):
+def makeHis(segID: int, N, CA, C, O, geo: HisGeo) -> Residue:
     '''Creates a Histidine residue'''
     ##R-Group
     CA_CB_length=geo.CA_CB_length
@@ -708,7 +708,7 @@ def makeHis(segID, N, CA, C, O, geo):
     res.add(NE2)
     return res
 
-def makePro(segID, N, CA, C, O, geo):
+def makePro(segID: int, N, CA, C, O, geo: ProGeo) -> Residue:
     '''Creates a Proline residue'''
     ##R-Group
     CA_CB_length=geo.CA_CB_length
@@ -743,7 +743,7 @@ def makePro(segID, N, CA, C, O, geo):
 
     return res
 
-def makePhe(segID, N, CA, C, O, geo):
+def makePhe(segID: int, N, CA, C, O, geo: PheGeo) -> Residue:
     '''Creates a Phenylalanine residue'''
     ##R-Group
     CA_CB_length=geo.CA_CB_length
@@ -804,7 +804,7 @@ def makePhe(segID, N, CA, C, O, geo):
     res.add(CZ)
     return res
 
-def makeTyr(segID, N, CA, C, O, geo):
+def makeTyr(segID: int, N, CA, C, O, geo: TyrGeo) -> Residue:
     '''Creates a Tyrosine residue'''
     ##R-Group
     CA_CB_length=geo.CA_CB_length
@@ -872,7 +872,7 @@ def makeTyr(segID, N, CA, C, O, geo):
     res.add(OH)
     return res
 
-def makeTrp(segID, N, CA, C, O, geo):
+def makeTrp(segID: int, N, CA, C, O, geo: TrpGeo) -> Residue:
     '''Creates a Tryptophan residue'''
     ##R-Group
     CA_CB_length=geo.CA_CB_length
@@ -993,45 +993,45 @@ def initialize_res(residue):
     carbonyl=calculateCoordinates(N, CA, C, C_O_length, CA_C_O_angle, N_CA_C_O_diangle)
     O= Atom("O",carbonyl , 0.0 , 1.0, " "," O", 0, "O")
 
-    if(AA=='G'):
+    if isinstance(geo, GlyGeo):
         res=makeGly(segID, N, CA, C, O, geo)
-    elif(AA=='A'):
+    elif isinstance(geo, AlaGeo):
         res=makeAla(segID, N, CA, C, O, geo)
-    elif(AA=='S'):
+    elif isinstance(geo, SerGeo):
         res=makeSer(segID, N, CA, C, O, geo)
-    elif(AA=='C'):
+    elif isinstance(geo, CysGeo):
         res=makeCys(segID, N, CA, C, O, geo)
-    elif(AA=='V'):
+    elif isinstance(geo, ValGeo):
         res=makeVal(segID, N, CA, C, O, geo)
-    elif(AA=='I'):
+    elif isinstance(geo, IleGeo):
         res=makeIle(segID, N, CA, C, O, geo)
-    elif(AA=='L'):
+    elif isinstance(geo, LeuGeo):
         res=makeLeu(segID, N, CA, C, O, geo)
-    elif(AA=='T'):
+    elif isinstance(geo, ThrGeo):
         res=makeThr(segID, N, CA, C, O, geo)
-    elif(AA=='R'):
+    elif isinstance(geo, ArgGeo):
         res=makeArg(segID, N, CA, C, O, geo)
-    elif(AA=='K'):
+    elif isinstance(geo, LysGeo):
         res=makeLys(segID, N, CA, C, O, geo)
-    elif(AA=='D'):
+    elif isinstance(geo, AspGeo):
         res=makeAsp(segID, N, CA, C, O, geo)
-    elif(AA=='E'):
+    elif isinstance(geo, GluGeo):
         res=makeGlu(segID, N, CA, C, O, geo)
-    elif(AA=='N'):
+    elif isinstance(geo, AsnGeo):
         res=makeAsn(segID, N, CA, C, O, geo)
-    elif(AA=='Q'):
+    elif isinstance(geo, GlnGeo):
         res=makeGln(segID, N, CA, C, O, geo)
-    elif(AA=='M'):
+    elif isinstance(geo, MetGeo):
         res=makeMet(segID, N, CA, C, O, geo)
-    elif(AA=='H'):
+    elif isinstance(geo, HisGeo):
         res=makeHis(segID, N, CA, C, O, geo)
-    elif(AA=='P'):
+    elif isinstance(geo, ProGeo):
         res=makePro(segID, N, CA, C, O, geo)
-    elif(AA=='F'):
+    elif isinstance(geo, PheGeo):
         res=makePhe(segID, N, CA, C, O, geo)
-    elif(AA=='Y'):
+    elif isinstance(geo, TyrGeo):
         res=makeTyr(segID, N, CA, C, O, geo)
-    elif(AA=='W'):
+    elif isinstance(geo, TrpGeo):
         res=makeTrp(segID, N, CA, C, O, geo)
     else:
         res=makeGly(segID, N, CA, C, O, geo)
@@ -1106,49 +1106,49 @@ def add_residue_from_geo(structure, geo):
     carbonyl=calculateCoordinates(N, CA, C, C_O_length, CA_C_O_angle, N_CA_C_O_diangle)
     O= Atom("O",carbonyl , 0.0 , 1.0, " "," O", 0, "O")
     
-    if(AA=='G'):
+    if isinstance(geo, GlyGeo):
         res=makeGly(segID, N, CA, C, O, geo)
-    elif(AA=='A'):
+    elif isinstance(geo, AlaGeo):
         res=makeAla(segID, N, CA, C, O, geo)
-    elif(AA=='S'):
+    elif isinstance(geo, SerGeo):
         res=makeSer(segID, N, CA, C, O, geo)
-    elif(AA=='C'):
+    elif isinstance(geo, CysGeo):
         res=makeCys(segID, N, CA, C, O, geo)
-    elif(AA=='V'):
+    elif isinstance(geo, ValGeo):
         res=makeVal(segID, N, CA, C, O, geo)
-    elif(AA=='I'):
+    elif isinstance(geo, IleGeo):
         res=makeIle(segID, N, CA, C, O, geo)
-    elif(AA=='L'):
+    elif isinstance(geo, LeuGeo):
         res=makeLeu(segID, N, CA, C, O, geo)
-    elif(AA=='T'):
+    elif isinstance(geo, ThrGeo):
         res=makeThr(segID, N, CA, C, O, geo)
-    elif(AA=='R'):
+    elif isinstance(geo, ArgGeo):
         res=makeArg(segID, N, CA, C, O, geo)
-    elif(AA=='K'):
+    elif isinstance(geo, LysGeo):
         res=makeLys(segID, N, CA, C, O, geo)
-    elif(AA=='D'):
+    elif isinstance(geo, AspGeo):
         res=makeAsp(segID, N, CA, C, O, geo)
-    elif(AA=='E'):
+    elif isinstance(geo, GluGeo):
         res=makeGlu(segID, N, CA, C, O, geo)
-    elif(AA=='N'):
+    elif isinstance(geo, AsnGeo):
         res=makeAsn(segID, N, CA, C, O, geo)
-    elif(AA=='Q'):
+    elif isinstance(geo, GlnGeo):
         res=makeGln(segID, N, CA, C, O, geo)
-    elif(AA=='M'):
+    elif isinstance(geo, MetGeo):
         res=makeMet(segID, N, CA, C, O, geo)
-    elif(AA=='H'):
+    elif isinstance(geo, HisGeo):
         res=makeHis(segID, N, CA, C, O, geo)
-    elif(AA=='P'):
+    elif isinstance(geo, ProGeo):
         res=makePro(segID, N, CA, C, O, geo)
-    elif(AA=='F'):
+    elif isinstance(geo, PheGeo):
         res=makePhe(segID, N, CA, C, O, geo)
-    elif(AA=='Y'):
+    elif isinstance(geo, TyrGeo):
         res=makeTyr(segID, N, CA, C, O, geo)
-    elif(AA=='W'):
+    elif isinstance(geo, TrpGeo):
         res=makeTrp(segID, N, CA, C, O, geo)
     else:
         res=makeGly(segID, N, CA, C, O, geo)
-        
+
     resRef['O'].set_coord(calculateCoordinates(res['N'], resRef['CA'], resRef['C'], C_O_length, CA_C_O_angle, 180.0))
 
     ghost= Atom("N", calculateCoordinates(res['N'], res['CA'], res['C'], peptide_bond, CA_C_N_angle, psi_im1), 0.0 , 0.0, " ","N", 0, "N")
