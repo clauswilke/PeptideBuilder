@@ -2,6 +2,10 @@
 
 *Matthew Z. Tien, Dariya K. Sydykova, Austin G. Meyer, and Claus O. Wilke*
 
+[![Build Status](https://travis-ci.org/clauswilke/PeptideBuilder.svg?branch=master)](https://travis-ci.org/clauswilke/PeptideBuilder)
+[![Coverage Status](https://img.shields.io/codecov/c/github/clauswilke/PeptideBuilder/master.svg)](https://codecov.io/github/clauswilke/PeptideBuilder?branch=master)
+
+
 Reference:  
 M. Z. Tien, D. K. Sydykova, A. G. Meyer, C. O. Wilke (2013). PeptideBuilder:
 A simple Python library to generate model peptides. PeerJ 1:e80.
