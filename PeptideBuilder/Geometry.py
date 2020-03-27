@@ -117,7 +117,7 @@ class SerGeo(Geo):
 
         self.residue_name= 'S'
 
-    def inputRotamers(self, rotamers: List[float]):
+    def inputRotamers(self, rotamers: List[float]) -> None:
         try:
             self.N_CA_CB_OG_diangle=rotamers[0]
         except IndexError:
@@ -154,7 +154,7 @@ class CysGeo(Geo):
 
         self.residue_name= 'C'
 
-    def inputRotamers(self, rotamers: List[float]):
+    def inputRotamers(self, rotamers: List[float]) -> None:
         try:
             self.N_CA_CB_SG_diangle=rotamers[0]
         except IndexError:
@@ -193,7 +193,7 @@ class ValGeo(Geo):
 
         self.residue_name= 'V'
 
-    def inputRotamers(self, rotamers: List[float]):
+    def inputRotamers(self, rotamers: List[float]) -> None:
         try:
             self.N_CA_CB_CG1_diangle=rotamers[0]
             self.N_CA_CB_CG2_diangle=rotamers[1]
@@ -238,7 +238,7 @@ class IleGeo(Geo):
 
         self.residue_name= 'I'
 
-    def inputRotamers(self, rotamers: List[float]):
+    def inputRotamers(self, rotamers: List[float]) -> None:
         try:
             self.N_CA_CB_CG1_diangle=rotamers[0]
             self.N_CA_CB_CG2_diangle=rotamers[1]
@@ -294,7 +294,7 @@ class LeuGeo(Geo):
 
         self.residue_name= 'L'
 
-    def inputRotamers(self, rotamers: List[float]):
+    def inputRotamers(self, rotamers: List[float]) -> None:
         try: 
             self.N_CA_CB_CG_diangle=rotamers[0]
             self.CA_CB_CG_CD1_diangle=rotamers[1]
@@ -347,7 +347,7 @@ class ThrGeo(Geo):
 
         self.residue_name= 'T'
 
-    def inputRotamers(self, rotamers: List[float]):
+    def inputRotamers(self, rotamers: List[float]) -> None:
         try:
             self.N_CA_CB_OG1_diangle=rotamers[0]
             self.N_CA_CB_OG2_diangle=rotamers[1]
@@ -404,7 +404,7 @@ class ArgGeo(Geo):
 
         self.residue_name= 'R'
 
-    def inputRotamers(self, rotamers: List[float]):
+    def inputRotamers(self, rotamers: List[float]) -> None:
         try:
             self.N_CA_CB_CG_diangle=rotamers[0]
             self.CA_CB_CG_CD_diangle=rotamers[1]
@@ -468,7 +468,7 @@ class LysGeo(Geo):
 
         self.residue_name= 'K'
 
-    def inputRotamers(self, rotamers: List[float]):
+    def inputRotamers(self, rotamers: List[float]) -> None:
         try:
             self.N_CA_CB_CG_diangle=rotamers[0]
             self.CA_CB_CG_CD_diangle=rotamers[1]
@@ -524,7 +524,7 @@ class AspGeo(Geo):
 
         self.residue_name= 'D'
 
-    def inputRotamers(self, rotamers: List[float]):
+    def inputRotamers(self, rotamers: List[float]) -> None:
         try:
             self.N_CA_CB_CG_diangle=rotamers[0]
             self.CA_CB_CG_OD1_diangle=rotamers[1]
@@ -575,7 +575,7 @@ class AsnGeo(Geo):
 
         self.residue_name= 'N'
 
-    def inputRotamers(self, rotamers: List[float]):
+    def inputRotamers(self, rotamers: List[float]) -> None:
         try:
             self.N_CA_CB_CG_diangle=rotamers[0]
             self.CA_CB_CG_OD1_diangle=rotamers[1]
@@ -629,7 +629,7 @@ class GluGeo(Geo):
 
         self.residue_name= 'E'
 
-    def inputRotamers(self, rotamers: List[float]):
+    def inputRotamers(self, rotamers: List[float]) -> None:
         try:
             self.N_CA_CB_CG_diangle=rotamers[0]
             self.CA_CB_CG_CD_diangle=rotamers[1]
@@ -692,7 +692,7 @@ class GlnGeo(Geo):
 
         self.residue_name= 'Q'
 
-    def inputRotamers(self, rotamers: List[float]):
+    def inputRotamers(self, rotamers: List[float]) -> None:
         try:
             self.N_CA_CB_CG_diangle=rotamers[0]
             self.CA_CB_CG_CD_diangle=rotamers[1]
@@ -812,7 +812,7 @@ class HisGeo(Geo):
 
         self.residue_name= 'H'
 
-    def inputRotamers(self, rotamers: List[float]):
+    def inputRotamers(self, rotamers: List[float]) -> None:
         try:
             self.N_CA_CB_CG_diangle=rotamers[0]
             self.CA_CB_CG_ND1_diangle=rotamers[1]
@@ -906,7 +906,7 @@ class PheGeo(Geo):
 
         self.residue_name= 'F'
 
-    def inputRotamers(self, rotamers: List[float]):
+    def inputRotamers(self, rotamers: List[float]) -> None:
         try:
             self.N_CA_CB_CG_diangle=rotamers[0]
             self.CA_CB_CG_CD1_diangle=rotamers[1]
@@ -974,7 +974,7 @@ class TyrGeo(Geo):
 
         self.residue_name= 'Y'
 
-    def inputRotamers(self, rotamers: List[float]):
+    def inputRotamers(self, rotamers: List[float]) -> None:
         try:
             self.N_CA_CB_CG_diangle=rotamers[0]
             self.CA_CB_CG_CD1_diangle=rotamers[1]
@@ -1049,7 +1049,7 @@ class TrpGeo(Geo):
 
         self.residue_name= 'W'
 
-    def inputRotamers(self, rotamers: List[float]):
+    def inputRotamers(self, rotamers: List[float]) -> None:
         try:
             self.N_CA_CB_CG_diangle=rotamers[0]
             self.CA_CB_CG_CD1_diangle=rotamers[1]

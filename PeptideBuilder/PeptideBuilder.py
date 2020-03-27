@@ -27,7 +27,7 @@ import numpy
 from .Geometry import AlaGeo, ArgGeo, AsnGeo, AspGeo, CysGeo, GlnGeo, GluGeo, GlyGeo, HisGeo, IleGeo, LeuGeo, LysGeo, MetGeo, PheGeo, ProGeo, SerGeo, ThrGeo, TrpGeo, TyrGeo, ValGeo, geometry, Geo
 
 
-def get_prop(atm):
+def get_prop(atm) -> None:
     print(atm.get_name())
     print(atm.get_coord())
     print(atm.get_vector())
