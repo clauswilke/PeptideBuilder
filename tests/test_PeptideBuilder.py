@@ -86,6 +86,7 @@ def test_make_structure_from_geos2():
     structure = PeptideBuilder.make_structure_from_geos(geos)
     assert compare_to_reference(structure, "extended.pdb")
 
+
 # Build a helix containing all 20 amino acids, with slowly varying
 # backbone angles, using make_structure().
 # The resulting structure should be identical to `helix.pdb`
@@ -101,3 +102,27 @@ def test_make_structure():
         phi_list, psi_im1_list
     )
     assert compare_to_reference(structure, "helix.pdb")
+
+
+# Build a helix containing all 20 amino acids, with slowly varying
+# backbone angles, using make_structure(). Now we're changing omega also.
+# The first half of the resulting structure should be identical to
+# `helix.pdb`, while the second half should be slightly different.
+def test_make_structure2():
+    phi_list = []
+    psi_im1_list = []
+    omega_list = []
+
+    for i in range(1,20):
+        phi_list.append(-60+i)
+        psi_im1_list.append(-40-i)
+        omega_list.append(180)
+    
+    for i in range(9,19):
+        omega_list[i] = -178
+    
+    structure = PeptideBuilder.make_structure(
+        "ACDEFGHIKLMNPQRSTVWY",
+        phi_list, psi_im1_list, omega_list
+    )
+    assert compare_to_reference(structure, "helix2.pdb")
