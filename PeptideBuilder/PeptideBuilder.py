@@ -15,7 +15,8 @@ This file is provided to you under the MIT License.'''
 import math, warnings
 
 from Bio.PDB.Polypeptide import is_aa
-from Bio.PDB import Residue, Atom
+from Bio.PDB.Atom import Atom
+from Bio.PDB.Residue import Residue 
 from Bio.PDB.Chain import Chain
 from Bio.PDB.Model import Model
 from Bio.PDB.Structure import Structure
