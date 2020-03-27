@@ -1,0 +1,10 @@
+codecov:
+  notify:
+      require_ci_to_pass: yes
+
+comment: false
+
+ignore:
+  - "tests"
+  - "**/_version.py"
+  - "**/__init__.py"
