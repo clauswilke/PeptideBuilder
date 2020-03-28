@@ -13,6 +13,7 @@ Biopython, for structure manipulation.
 This file is provided to you under the MIT License.'''
 
 import math, warnings
+from typing import List, Optional, Union
 
 from Bio.PDB.Polypeptide import is_aa
 from Bio.PDB.Atom import Atom
@@ -23,10 +24,10 @@ from Bio.PDB.Structure import Structure
 from Bio.PDB.vectors import Vector, rotaxis, calc_dihedral
 import numpy
 
-from .Geometry import geometry, Geo
+from .Geometry import AlaGeo, ArgGeo, AsnGeo, AspGeo, CysGeo, GlnGeo, GluGeo, GlyGeo, HisGeo, IleGeo, LeuGeo, LysGeo, MetGeo, PheGeo, ProGeo, SerGeo, ThrGeo, TrpGeo, TyrGeo, ValGeo, geometry, Geo
 
 
-def get_prop(atm):
+def get_prop(atm) -> None:
     print(atm.get_name())
     print(atm.get_coord())
     print(atm.get_vector())
@@ -96,7 +97,7 @@ def calculateCoordinates(refA, refB, refC, L, ang, di):
     
     return D.get_array()
 
-def makeGly(segID, N, CA, C, O, geo):
+def makeGly(segID: int, N, CA, C, O, geo: Geo) -> Residue:
     '''Creates a Glycine residue'''
     ##Create Residue Data Structure
     res= Residue((' ', segID, ' '), "GLY", '    ')
@@ -109,7 +110,7 @@ def makeGly(segID, N, CA, C, O, geo):
     ##print(res)
     return res
 
-def makeAla(segID, N, CA, C, O, geo):
+def makeAla(segID: int, N, CA, C, O, geo: AlaGeo) -> Residue:
     '''Creates an Alanine residue'''
     ##R-Group
     CA_CB_length=geo.CA_CB_length
@@ -128,7 +129,7 @@ def makeAla(segID, N, CA, C, O, geo):
     res.add(CB)
     return res
 
-def makeSer(segID, N, CA, C, O, geo):
+def makeSer(segID: int, N, CA, C, O, geo: SerGeo) -> Residue:
     '''Creates a Serine residue'''
     ##R-Group
     CA_CB_length=geo.CA_CB_length
@@ -156,7 +157,7 @@ def makeSer(segID, N, CA, C, O, geo):
     ##print(res)
     return res
 
-def makeCys(segID, N, CA, C, O, geo):
+def makeCys(segID: int, N, CA, C, O, geo: CysGeo) -> Residue:
     '''Creates a Cysteine residue'''
     ##R-Group
     CA_CB_length=geo.CA_CB_length
@@ -182,7 +183,7 @@ def makeCys(segID, N, CA, C, O, geo):
     res.add(SG)
     return res
 
-def makeVal(segID, N, CA, C, O, geo):
+def makeVal(segID: int, N, CA, C, O, geo: ValGeo) -> Residue:
     '''Creates a Valine residue'''
     ##R-Group
     CA_CB_length=geo.CA_CB_length
@@ -215,7 +216,7 @@ def makeVal(segID, N, CA, C, O, geo):
     res.add(CG2)
     return res
 
-def makeIle(segID, N, CA, C, O, geo):
+def makeIle(segID: int, N, CA, C, O, geo: IleGeo) -> Residue:
     '''Creates an Isoleucine residue'''
     ##R-group
     CA_CB_length=geo.CA_CB_length
@@ -255,7 +256,7 @@ def makeIle(segID, N, CA, C, O, geo):
     res.add(CD1)
     return res
 
-def makeLeu(segID, N, CA, C, O, geo):
+def makeLeu(segID: int, N, CA, C, O, geo: LeuGeo) -> Residue:
     '''Creates a Leucine residue'''
     ##R-Group
     CA_CB_length=geo.CA_CB_length
@@ -295,7 +296,7 @@ def makeLeu(segID, N, CA, C, O, geo):
     res.add(CD2)
     return res
     
-def makeThr(segID, N, CA, C, O, geo):
+def makeThr(segID: int, N, CA, C, O, geo: ThrGeo) -> Residue:
     '''Creates a Threonine residue'''
     ##R-Group
     CA_CB_length=geo.CA_CB_length
@@ -328,7 +329,7 @@ def makeThr(segID, N, CA, C, O, geo):
     res.add(CG2)
     return res
 
-def makeArg(segID, N, CA, C, O, geo):
+def makeArg(segID: int, N, CA, C, O, geo: ArgGeo) -> Residue:
     '''Creates an Arginie residue'''
     ##R-Group
     CA_CB_length=geo.CA_CB_length
@@ -389,7 +390,7 @@ def makeArg(segID, N, CA, C, O, geo):
     res.add(NH2)
     return res
 
-def makeLys(segID, N, CA, C, O, geo):
+def makeLys(segID: int, N, CA, C, O, geo: LysGeo) -> Residue:
     '''Creates a Lysine residue'''
     ##R-Group
     CA_CB_length=geo.CA_CB_length
@@ -436,7 +437,7 @@ def makeLys(segID, N, CA, C, O, geo):
     res.add(NZ)
     return res
 
-def makeAsp(segID, N, CA, C, O, geo):
+def makeAsp(segID: int, N, CA, C, O, geo: AspGeo) -> Residue:
     '''Creates an Aspartic Acid residue'''
     ##R-Group
     CA_CB_length=geo.CA_CB_length
@@ -516,7 +517,7 @@ def makeAsn(segID,N, CA, C, O, geo):
     res.add(ND2)
     return res
 
-def makeGlu(segID, N, CA, C, O, geo):
+def makeGlu(segID: int, N, CA, C, O, geo: GluGeo) -> Residue:
     '''Creates a Glutamic Acid residue'''
     ##R-Group
     CA_CB_length=geo.CA_CB_length
@@ -564,7 +565,7 @@ def makeGlu(segID, N, CA, C, O, geo):
     res.add(OE2)
     return res
 
-def makeGln(segID, N, CA, C, O, geo):
+def makeGln(segID: int, N, CA, C, O, geo: GlnGeo) -> Residue:
     '''Creates a Glutamine residue'''
     ##R-Group
     CA_CB_length=geo.CA_CB_length
@@ -613,7 +614,7 @@ def makeGln(segID, N, CA, C, O, geo):
     res.add(NE2)
     return res
 
-def makeMet(segID, N, CA, C, O, geo):
+def makeMet(segID: int, N, CA, C, O, geo: MetGeo) -> Residue:
     '''Creates a Methionine residue'''
     ##R-Group
     CA_CB_length=geo.CA_CB_length
@@ -653,7 +654,7 @@ def makeMet(segID, N, CA, C, O, geo):
     res.add(CE)
     return res
 
-def makeHis(segID, N, CA, C, O, geo):
+def makeHis(segID: int, N, CA, C, O, geo: HisGeo) -> Residue:
     '''Creates a Histidine residue'''
     ##R-Group
     CA_CB_length=geo.CA_CB_length
@@ -707,7 +708,7 @@ def makeHis(segID, N, CA, C, O, geo):
     res.add(NE2)
     return res
 
-def makePro(segID, N, CA, C, O, geo):
+def makePro(segID: int, N, CA, C, O, geo: ProGeo) -> Residue:
     '''Creates a Proline residue'''
     ##R-Group
     CA_CB_length=geo.CA_CB_length
@@ -742,7 +743,7 @@ def makePro(segID, N, CA, C, O, geo):
 
     return res
 
-def makePhe(segID, N, CA, C, O, geo):
+def makePhe(segID: int, N, CA, C, O, geo: PheGeo) -> Residue:
     '''Creates a Phenylalanine residue'''
     ##R-Group
     CA_CB_length=geo.CA_CB_length
@@ -803,7 +804,7 @@ def makePhe(segID, N, CA, C, O, geo):
     res.add(CZ)
     return res
 
-def makeTyr(segID, N, CA, C, O, geo):
+def makeTyr(segID: int, N, CA, C, O, geo: TyrGeo) -> Residue:
     '''Creates a Tyrosine residue'''
     ##R-Group
     CA_CB_length=geo.CA_CB_length
@@ -871,7 +872,7 @@ def makeTyr(segID, N, CA, C, O, geo):
     res.add(OH)
     return res
 
-def makeTrp(segID, N, CA, C, O, geo):
+def makeTrp(segID: int, N, CA, C, O, geo: TrpGeo) -> Residue:
     '''Creates a Tryptophan residue'''
     ##R-Group
     CA_CB_length=geo.CA_CB_length
@@ -959,7 +960,55 @@ def makeTrp(segID, N, CA, C, O, geo):
     res.add(CH2)
     return res
 
-def initialize_res(residue):
+
+def make_res_of_type(segID: int, N, CA, C, O, geo: Geo) -> Residue:
+    if isinstance(geo, GlyGeo):
+        res=makeGly(segID, N, CA, C, O, geo)
+    elif isinstance(geo, AlaGeo):
+        res=makeAla(segID, N, CA, C, O, geo)
+    elif isinstance(geo, SerGeo):
+        res=makeSer(segID, N, CA, C, O, geo)
+    elif isinstance(geo, CysGeo):
+        res=makeCys(segID, N, CA, C, O, geo)
+    elif isinstance(geo, ValGeo):
+        res=makeVal(segID, N, CA, C, O, geo)
+    elif isinstance(geo, IleGeo):
+        res=makeIle(segID, N, CA, C, O, geo)
+    elif isinstance(geo, LeuGeo):
+        res=makeLeu(segID, N, CA, C, O, geo)
+    elif isinstance(geo, ThrGeo):
+        res=makeThr(segID, N, CA, C, O, geo)
+    elif isinstance(geo, ArgGeo):
+        res=makeArg(segID, N, CA, C, O, geo)
+    elif isinstance(geo, LysGeo):
+        res=makeLys(segID, N, CA, C, O, geo)
+    elif isinstance(geo, AspGeo):
+        res=makeAsp(segID, N, CA, C, O, geo)
+    elif isinstance(geo, GluGeo):
+        res=makeGlu(segID, N, CA, C, O, geo)
+    elif isinstance(geo, AsnGeo):
+        res=makeAsn(segID, N, CA, C, O, geo)
+    elif isinstance(geo, GlnGeo):
+        res=makeGln(segID, N, CA, C, O, geo)
+    elif isinstance(geo, MetGeo):
+        res=makeMet(segID, N, CA, C, O, geo)
+    elif isinstance(geo, HisGeo):
+        res=makeHis(segID, N, CA, C, O, geo)
+    elif isinstance(geo, ProGeo):
+        res=makePro(segID, N, CA, C, O, geo)
+    elif isinstance(geo, PheGeo):
+        res=makePhe(segID, N, CA, C, O, geo)
+    elif isinstance(geo, TyrGeo):
+        res=makeTyr(segID, N, CA, C, O, geo)
+    elif isinstance(geo, TrpGeo):
+        res=makeTrp(segID, N, CA, C, O, geo)
+    else:
+        res=makeGly(segID, N, CA, C, O, geo)
+
+    return res
+
+
+def initialize_res(residue: Union[Geo, str]) -> Structure:
     '''Creates a new structure containing a single amino acid. The type and
     geometry of the amino acid are determined by the argument, which has to be
     either a geometry object or a single-letter amino acid code.
@@ -967,8 +1016,10 @@ def initialize_res(residue):
     
     if isinstance( residue, Geo ):
         geo = residue
+    elif isinstance(residue, str):
+        geo=geometry(residue)
     else:
-        geo=geometry(residue) 
+        raise ValueError("Invalid residue argument:", residue)
     
     segID=1
     AA= geo.residue_name
@@ -992,48 +1043,7 @@ def initialize_res(residue):
     carbonyl=calculateCoordinates(N, CA, C, C_O_length, CA_C_O_angle, N_CA_C_O_diangle)
     O= Atom("O",carbonyl , 0.0 , 1.0, " "," O", 0, "O")
 
-    if(AA=='G'):
-        res=makeGly(segID, N, CA, C, O, geo)
-    elif(AA=='A'):
-        res=makeAla(segID, N, CA, C, O, geo)
-    elif(AA=='S'):
-        res=makeSer(segID, N, CA, C, O, geo)
-    elif(AA=='C'):
-        res=makeCys(segID, N, CA, C, O, geo)
-    elif(AA=='V'):
-        res=makeVal(segID, N, CA, C, O, geo)
-    elif(AA=='I'):
-        res=makeIle(segID, N, CA, C, O, geo)
-    elif(AA=='L'):
-        res=makeLeu(segID, N, CA, C, O, geo)
-    elif(AA=='T'):
-        res=makeThr(segID, N, CA, C, O, geo)
-    elif(AA=='R'):
-        res=makeArg(segID, N, CA, C, O, geo)
-    elif(AA=='K'):
-        res=makeLys(segID, N, CA, C, O, geo)
-    elif(AA=='D'):
-        res=makeAsp(segID, N, CA, C, O, geo)
-    elif(AA=='E'):
-        res=makeGlu(segID, N, CA, C, O, geo)
-    elif(AA=='N'):
-        res=makeAsn(segID, N, CA, C, O, geo)
-    elif(AA=='Q'):
-        res=makeGln(segID, N, CA, C, O, geo)
-    elif(AA=='M'):
-        res=makeMet(segID, N, CA, C, O, geo)
-    elif(AA=='H'):
-        res=makeHis(segID, N, CA, C, O, geo)
-    elif(AA=='P'):
-        res=makePro(segID, N, CA, C, O, geo)
-    elif(AA=='F'):
-        res=makePhe(segID, N, CA, C, O, geo)
-    elif(AA=='Y'):
-        res=makeTyr(segID, N, CA, C, O, geo)
-    elif(AA=='W'):
-        res=makeTrp(segID, N, CA, C, O, geo)
-    else:
-        res=makeGly(segID, N, CA, C, O, geo)
+    res = make_res_of_type(segID, N, CA, C, O, geo)
 
     cha= Chain('A')
     cha.add(res)
@@ -1046,7 +1056,7 @@ def initialize_res(residue):
     return struc
 
 
-def getReferenceResidue(structure):
+def getReferenceResidue(structure: Structure) -> Residue:
     '''Returns the last residue of chain A model 0 of the given structure.
     
     This function is a helper function that should not normally be called
@@ -1063,7 +1073,7 @@ def getReferenceResidue(structure):
         
     return resRef
 
-def add_residue_from_geo(structure, geo):
+def add_residue_from_geo(structure: Structure, geo: Geo) -> Structure:
     '''Adds a residue to chain A model 0 of the given structure, and
     returns the new structure. The residue to be added is determined by
     the geometry object given as second argument.
@@ -1080,7 +1090,7 @@ def add_residue_from_geo(structure, geo):
     CA_C_N_angle=geo.CA_C_N_angle
     C_N_CA_angle=geo.C_N_CA_angle
 
-    ##Backbone Coordinages
+    ##Backbone Coordinates
     N_CA_C_angle=geo.N_CA_C_angle
     CA_N_length=geo.CA_N_length
     CA_C_length=geo.CA_C_length
@@ -1105,49 +1115,8 @@ def add_residue_from_geo(structure, geo):
     carbonyl=calculateCoordinates(N, CA, C, C_O_length, CA_C_O_angle, N_CA_C_O_diangle)
     O= Atom("O",carbonyl , 0.0 , 1.0, " "," O", 0, "O")
     
-    if(AA=='G'):
-        res=makeGly(segID, N, CA, C, O, geo)
-    elif(AA=='A'):
-        res=makeAla(segID, N, CA, C, O, geo)
-    elif(AA=='S'):
-        res=makeSer(segID, N, CA, C, O, geo)
-    elif(AA=='C'):
-        res=makeCys(segID, N, CA, C, O, geo)
-    elif(AA=='V'):
-        res=makeVal(segID, N, CA, C, O, geo)
-    elif(AA=='I'):
-        res=makeIle(segID, N, CA, C, O, geo)
-    elif(AA=='L'):
-        res=makeLeu(segID, N, CA, C, O, geo)
-    elif(AA=='T'):
-        res=makeThr(segID, N, CA, C, O, geo)
-    elif(AA=='R'):
-        res=makeArg(segID, N, CA, C, O, geo)
-    elif(AA=='K'):
-        res=makeLys(segID, N, CA, C, O, geo)
-    elif(AA=='D'):
-        res=makeAsp(segID, N, CA, C, O, geo)
-    elif(AA=='E'):
-        res=makeGlu(segID, N, CA, C, O, geo)
-    elif(AA=='N'):
-        res=makeAsn(segID, N, CA, C, O, geo)
-    elif(AA=='Q'):
-        res=makeGln(segID, N, CA, C, O, geo)
-    elif(AA=='M'):
-        res=makeMet(segID, N, CA, C, O, geo)
-    elif(AA=='H'):
-        res=makeHis(segID, N, CA, C, O, geo)
-    elif(AA=='P'):
-        res=makePro(segID, N, CA, C, O, geo)
-    elif(AA=='F'):
-        res=makePhe(segID, N, CA, C, O, geo)
-    elif(AA=='Y'):
-        res=makeTyr(segID, N, CA, C, O, geo)
-    elif(AA=='W'):
-        res=makeTrp(segID, N, CA, C, O, geo)
-    else:
-        res=makeGly(segID, N, CA, C, O, geo)
-        
+    res = make_res_of_type(segID, N, CA, C, O, geo)
+
     resRef['O'].set_coord(calculateCoordinates(res['N'], resRef['CA'], resRef['C'], C_O_length, CA_C_O_angle, 180.0))
 
     ghost= Atom("N", calculateCoordinates(res['N'], res['CA'], res['C'], peptide_bond, CA_C_N_angle, psi_im1), 0.0 , 0.0, " ","N", 0, "N")
@@ -1157,7 +1126,7 @@ def add_residue_from_geo(structure, geo):
     return structure
 
 
-def make_extended_structure(AA_chain):
+def make_extended_structure(AA_chain: str) -> Structure:
     '''Place a sequence of amino acids into a peptide in the extended
     conformation. The argument AA_chain holds the sequence of amino
     acids to be used.'''
@@ -1172,7 +1141,7 @@ def make_extended_structure(AA_chain):
     return struc
 
     
-def add_residue(structure, residue, phi=-120, psi_im1=140, omega=-370):
+def add_residue(structure: Structure, residue: Union[Geo, str], phi=-120, psi_im1=140, omega=-370) -> Structure:
     '''Adds a residue to chain A model 0 of the given structure, and
     returns the new structure. The residue to be added can be specified
     in two ways: either as a geometry object (in which case
@@ -1186,19 +1155,20 @@ def add_residue(structure, residue, phi=-120, psi_im1=140, omega=-370):
     
     if isinstance( residue, Geo ):
         geo = residue
-    else:
+    elif isinstance( residue, str):
         geo=geometry(residue) 
         geo.phi=phi
         geo.psi_im1=psi_im1
         if omega>-361:
             geo.omega=omega
+    else:
+        raise ValueError("Invalid residue argument:", residue)
     
-    add_residue_from_geo(structure, geo)
-    return structure
+    return add_residue_from_geo(structure, geo)
     
 
     
-def make_structure(AA_chain,phi,psi_im1,omega=[]):
+def make_structure(AA_chain: str, phi: List[float], psi_im1: List[float], omega: Optional[List] = None) -> Structure:
     '''Place a sequence of amino acids into a peptide with specified
     backbone dihedral angles. The argument AA_chain holds the
     sequence of amino acids to be used. The arguments phi and psi_im1 hold
@@ -1209,7 +1179,7 @@ def make_structure(AA_chain,phi,psi_im1,omega=[]):
     geo = geometry(AA_chain[0])
     struc=initialize_res(geo)
 
-    if len(omega)==0:
+    if omega is None or not len(omega):
         for i in range(1,len(AA_chain)): 
             AA = AA_chain[i]
             add_residue(struc, AA, phi[i-1], psi_im1[i-1])
@@ -1221,7 +1191,7 @@ def make_structure(AA_chain,phi,psi_im1,omega=[]):
     return struc
     
     
-def make_structure_from_geos(geos):
+def make_structure_from_geos(geos: List[Geo]) -> Structure:
     '''Creates a structure out of a list of geometry objects.'''
     model_structure=initialize_res(geos[0])
     for i in range(1,len(geos)):
