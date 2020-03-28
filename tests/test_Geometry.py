@@ -19,7 +19,8 @@ def test_geometry_A():
     assert g.phi == -120
     assert g.psi_im1 == 140
     assert g.residue_name == "A"
-    
+
+
 def test_geometry_C():
     g = Geometry.geometry("C")
     assert g.CA_CB_SG_angle == 113.8169
@@ -41,6 +42,7 @@ def test_geometry_C():
     assert g.phi == -120
     assert g.psi_im1 == 140
     assert g.residue_name == "C"
+
 
 def test_geometry_D():
     g = Geometry.geometry("D")
@@ -69,6 +71,7 @@ def test_geometry_D():
     assert g.phi == -120
     assert g.psi_im1 == 140
     assert g.residue_name == "D"
+
 
 def test_geometry_E():
     g = Geometry.geometry("E")
@@ -100,6 +103,7 @@ def test_geometry_E():
     assert g.phi == -120
     assert g.psi_im1 == 140
     assert g.residue_name == "E"
+
 
 def test_geometry_F():
     g = Geometry.geometry("F")
@@ -138,6 +142,7 @@ def test_geometry_F():
     assert g.psi_im1 == 140
     assert g.residue_name == "F"
 
+
 def test_geometry_G():
     g = Geometry.geometry("G")
     assert g.CA_C_N_angle == 116.642992978143
@@ -153,6 +158,7 @@ def test_geometry_G():
     assert g.phi == -120
     assert g.psi_im1 == 140
     assert g.residue_name == "G"
+
 
 def test_geometry_H():
     g = Geometry.geometry("H")
@@ -188,6 +194,7 @@ def test_geometry_H():
     assert g.psi_im1 == 140
     assert g.residue_name == "H"
 
+
 def test_geometry_I():
     g = Geometry.geometry("I")
     assert g.CA_CB_CG1_CD1_diangle == 169.8
@@ -215,6 +222,7 @@ def test_geometry_I():
     assert g.phi == -120
     assert g.psi_im1 == 140
     assert g.residue_name == "I"
+
 
 def test_geometry_K():
     g = Geometry.geometry("K")
@@ -247,6 +255,7 @@ def test_geometry_K():
     assert g.psi_im1 == 140
     assert g.residue_name == "K"
 
+
 def test_geometry_L():
     g = Geometry.geometry("L")
     assert g.CA_CB_CG_CD1_diangle == 174.9
@@ -274,6 +283,7 @@ def test_geometry_L():
     assert g.phi == -120
     assert g.psi_im1 == 140
     assert g.residue_name == "L"
+
 
 def test_geometry_M():
     g = Geometry.geometry("M")
@@ -303,6 +313,7 @@ def test_geometry_M():
     assert g.psi_im1 == 140
     assert g.residue_name == "M"
 
+
 def test_geometry_N():
     g = Geometry.geometry("N")
     assert g.CA_CB_CG_ND2_diangle == 121.7
@@ -331,6 +342,7 @@ def test_geometry_N():
     assert g.psi_im1 == 140
     assert g.residue_name == "N"
 
+
 def test_geometry_P():
     g = Geometry.geometry("P")
     assert g.CA_CB_CG_CD_diangle == -34.8
@@ -355,6 +367,7 @@ def test_geometry_P():
     assert g.phi == -120
     assert g.psi_im1 == 140
     assert g.residue_name == "P"
+
 
 def test_geometry_Q():
     g = Geometry.geometry("Q")
@@ -386,6 +399,7 @@ def test_geometry_Q():
     assert g.phi == -120
     assert g.psi_im1 == 140
     assert g.residue_name == "Q"
+
 
 def test_geometry_R():
     g = Geometry.geometry("R")
@@ -424,6 +438,7 @@ def test_geometry_R():
     assert g.psi_im1 == 140
     assert g.residue_name == "R"
 
+
 def test_geometry_S():
     g = Geometry.geometry("S")
     assert g.CA_CB_OG_angle == 110.773
@@ -445,6 +460,7 @@ def test_geometry_S():
     assert g.phi == -120
     assert g.psi_im1 == 140
     assert g.residue_name == "S"
+
 
 def test_geometry_T():
     g = Geometry.geometry("T")
@@ -471,6 +487,7 @@ def test_geometry_T():
     assert g.psi_im1 == 140
     assert g.residue_name == "T"
 
+
 def test_geometry_V():
     g = Geometry.geometry("V")
     assert g.CA_CB_CG1_angle == 110.7
@@ -495,6 +512,7 @@ def test_geometry_V():
     assert g.phi == -120
     assert g.psi_im1 == 140
     assert g.residue_name == "V"
+
 
 def test_geometry_W():
     g = Geometry.geometry("W")
@@ -541,6 +559,7 @@ def test_geometry_W():
     assert g.phi == -120
     assert g.psi_im1 == 140
     assert g.residue_name == "W"
+
 
 def test_geometry_Y():
     g = Geometry.geometry("Y")

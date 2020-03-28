@@ -4,19 +4,21 @@ from Bio.PDB.Polypeptide import PPBuilder
 from Bio.PDB import PDBParser
 import os
 
+
 def compare_residues(r1, r2):
     result = True
     result = result and r1 == r2
     for a1, a2 in zip(r1, r2):
-        #print(a1.coord - a2.coord)
+        # print(a1.coord - a2.coord)
         result = result and (abs(a1.coord - a2.coord) < 0.001).all()
     return result
+
 
 def compare_to_reference(structure, ref_file):
     file = os.path.join("tests", "pdbs", ref_file)
     parser = PDBParser()
-    ref_structure = parser.get_structure('test', file)
-    
+    ref_structure = parser.get_structure("test", file)
+
     result = True
     res = list(list(structure[0])[0])
     ref_res = list(list(ref_structure[0])[0])
@@ -24,9 +26,10 @@ def compare_to_reference(structure, ref_file):
         result = result and compare_residues(r1, r2)
     return result
 
+
 # Build a peptide containing all 20 amino acids
 def test_add_residue():
-    structure = PeptideBuilder.initialize_res('A')
+    structure = PeptideBuilder.initialize_res("A")
     for aa in "CDEFGHIKLMNPQRSTVWY":
         structure = PeptideBuilder.add_residue(structure, aa)
 
@@ -37,12 +40,13 @@ def test_add_residue():
 
     # now compare to saved reference structure
     assert compare_to_reference(structure, "extended.pdb")
-        
+
+
 # Build a helix containing all 20 amino acids, with slowly varying backbone angles
 def test_add_residue2():
     phi = -60
     psi_im1 = -40
-    geo = Geometry.geometry('A')
+    geo = Geometry.geometry("A")
     geo.phi = phi
     geo.psi_im1 = psi_im1
     structure = PeptideBuilder.initialize_res(geo)
@@ -54,7 +58,7 @@ def test_add_residue2():
         geo.phi = phi
         geo.psi_im1 = psi_im1
         structure = PeptideBuilder.add_residue(structure, geo)
-        
+
     # now compare to saved reference structure
     assert compare_to_reference(structure, "helix.pdb")
 
@@ -67,7 +71,6 @@ def test_make_structure_from_geos():
         geos.append(Geometry.geometry(aa))
     structure = PeptideBuilder.make_structure_from_geos(geos)
     assert compare_to_reference(structure, "extended.pdb")
-
 
 
 # Build a peptide containing all 20 amino acids in extended conformation.
@@ -95,11 +98,10 @@ def test_make_structure():
     psi_im1_list = []
 
     for i in range(1, 20):
-        phi_list.append(-60+i)
-        psi_im1_list.append(-40-i)
+        phi_list.append(-60 + i)
+        psi_im1_list.append(-40 - i)
     structure = PeptideBuilder.make_structure(
-        "ACDEFGHIKLMNPQRSTVWY",
-        phi_list, psi_im1_list
+        "ACDEFGHIKLMNPQRSTVWY", phi_list, psi_im1_list
     )
     assert compare_to_reference(structure, "helix.pdb")
 
@@ -113,16 +115,15 @@ def test_make_structure2():
     psi_im1_list = []
     omega_list = []
 
-    for i in range(1,20):
-        phi_list.append(-60+i)
-        psi_im1_list.append(-40-i)
+    for i in range(1, 20):
+        phi_list.append(-60 + i)
+        psi_im1_list.append(-40 - i)
         omega_list.append(180)
-    
-    for i in range(9,19):
+
+    for i in range(9, 19):
         omega_list[i] = -178
-    
+
     structure = PeptideBuilder.make_structure(
-        "ACDEFGHIKLMNPQRSTVWY",
-        phi_list, psi_im1_list, omega_list
+        "ACDEFGHIKLMNPQRSTVWY", phi_list, psi_im1_list, omega_list
     )
     assert compare_to_reference(structure, "helix2.pdb")
