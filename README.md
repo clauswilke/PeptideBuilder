@@ -13,7 +13,7 @@ You can install PeptideBuilder with pip:
 ```
 pip install PeptideBuilder
 ```
-PeptideBuilder has one required dependency: Biopython
+PeptideBuilder has one required dependency: [Biopython](https://pypi.org/project/biopython/)
 
 
 ## Examples
