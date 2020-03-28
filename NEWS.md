@@ -2,9 +2,9 @@
 
 ## PeptideBuilder 1.1.0
 
-- Support for Python 2.7 dropped
-- Proper unit tests
-- Code cleanup
+- Support for Python 2.7 has been dropped
+- Proper unit tests have been added
+- The code has gone extensive clean-up
 
 ## PeptideBuilder 1.0.3
 
