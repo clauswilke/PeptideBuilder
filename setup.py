@@ -38,4 +38,15 @@ setup(name = 'PeptideBuilder',
     extras_require = {
         'test': TEST_REQUIRES + INSTALL_REQUIRES,
     },
+    classifiers=[
+        # Trove classifiers
+        # (https://pypi.python.org/pypi?%3Aaction=list_classifiers)
+        'Development Status :: 5 - Production/Stable',
+        'License :: OSI Approved :: MIT License',
+        'Programming Language :: Python',
+        'Programming Language :: Python :: 3',
+        'Topic :: Scientific/Engineering :: Bio-Informatics',
+        'Topic :: Scientific/Engineering :: Chemistry',
+        'Intended Audience :: Science/Research',
+    ],
 )
