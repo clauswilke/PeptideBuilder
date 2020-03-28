@@ -6,6 +6,7 @@ before_install:
   - pip install -U pytest
   - pip install -U coverage
   - pip install -U pytest-cov
+  - pip install codecov
 
 install:
   - pip install -e . # install package
