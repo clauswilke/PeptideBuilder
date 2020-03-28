@@ -2,10 +2,11 @@
 
 *Matthew Z. Tien, Dariya K. Sydykova, Austin G. Meyer, and Claus O. Wilke*
 
-[![Build Status](https://travis-ci.org/clauswilke/PeptideBuilder.svg?branch=master)](https://travis-ci.org/clauswilke/PeptideBuilder)
-[![Coverage Status](https://img.shields.io/codecov/c/github/clauswilke/PeptideBuilder/master.svg)](https://codecov.io/github/clauswilke/PeptideBuilder?branch=master)
 [![PyPI version](https://badge.fury.io/py/PeptideBuilder.svg)](https://badge.fury.io/py/PeptideBuilder)
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/PeptideBuilder)
+![PyPI - License](https://img.shields.io/pypi/l/PeptideBuilder)
+[![Build Status](https://travis-ci.org/clauswilke/PeptideBuilder.svg?branch=master)](https://travis-ci.org/clauswilke/PeptideBuilder)
+[![Coverage Status](https://img.shields.io/codecov/c/github/clauswilke/PeptideBuilder/master.svg)](https://codecov.io/github/clauswilke/PeptideBuilder?branch=master)
 
 ## Installation
 
