@@ -1,18 +1,14 @@
-from Bio.PDB import *
+from pathlib import Path
+import math
+
+from Bio.PDB import PDBIO
 from Bio.PDB import PDBParser
 from Bio.PDB import Superimposer
-from Bio.PDB.Atom import *
-from Bio.PDB.Residue import *
-from Bio.PDB.Chain import *
-from Bio.PDB.Model import *
-from Bio.PDB.Structure import *
-from Bio.PDB.Vector import *
-from Bio.PDB.Entity import *
-import math
+from Bio.PDB.vectors import calc_angle, calc_dihedral
+
 from PeptideBuilder import Geometry
 import PeptideBuilder
 
-from os import path
 
 resdict = {
     "ALA": "A",
@@ -42,7 +38,7 @@ PDBdir = "PDBs"
 
 def build_linear_model(pdb_filename):
     parser = PDBParser()
-    structure = parser.get_structure("sample", path.join(PDBdir, pdb_filename))
+    structure = parser.get_structure("sample", Path(PDBdir, pdb_filename))
     model = structure[0]
     chain = model["A"]
     model_structure_geo = []
@@ -62,13 +58,13 @@ def build_linear_model(pdb_filename):
 def make_pdb_file(struct, file_nom):
     outfile = PDBIO()
     outfile.set_structure(struct)
-    outfile.save(path.join(PDBdir, file_nom))
+    outfile.save(Path(PDBdir, file_nom))
     return file_nom
 
 
 def build_backbone_model(pdb_filename):
     parser = PDBParser()
-    structure = parser.get_structure("sample", path.join(PDBdir, pdb_filename))
+    structure = parser.get_structure("sample", Path(PDBdir, pdb_filename))
     model = structure[0]
     chain = model["A"]
     model_structure_geo = []
@@ -138,7 +134,7 @@ def build_backbone_model(pdb_filename):
 
 def build_all_angles_model(pdb_filename):
     parser = PDBParser()
-    structure = parser.get_structure("sample", path.join(PDBdir, pdb_filename))
+    structure = parser.get_structure("sample", Path(PDBdir, pdb_filename))
     model = structure[0]
     chain = model["A"]
     model_structure_geo = []
@@ -196,7 +192,7 @@ def build_all_angles_model(pdb_filename):
 
 def build_phi_psi_model(pdb_filename):
     parser = PDBParser()
-    structure = parser.get_structure("sample", path.join(PDBdir, pdb_filename))
+    structure = parser.get_structure("sample", Path(PDBdir, pdb_filename))
     model = structure[0]
     chain = model["A"]
     seq = ""
@@ -248,8 +244,8 @@ def build_phi_psi_model(pdb_filename):
 def compare_structure(reference, alternate):
     parser = PDBParser()
 
-    ref_struct = parser.get_structure("Reference", path.join(PDBdir, reference))
-    alt_struct = parser.get_structure("Alternate", path.join(PDBdir, alternate))
+    ref_struct = parser.get_structure("Reference", Path(PDBdir, reference))
+    alt_struct = parser.get_structure("Alternate", Path(PDBdir, alternate))
 
     ref_model = ref_struct[0]
     ref_chain = ref_model["A"]
