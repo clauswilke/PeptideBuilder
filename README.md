@@ -30,6 +30,15 @@ https://github.com/clauswilke/PeptideBuilder.
 
 To test whether your installation works properly, run `pytest` in the top-level project folder.
 
-**Reference:**  
+## Contributing
+
+Pull requests are welcome on GitHub. However, please note contributions must be styled with [`black`](https://black.readthedocs.io/en/stable/) and pass the `pytest` unit tests to be accepted.
+
+Thus, before contributing code make sure the following commands exit without errors when run from the root directory of the Peptide Builder project:
+
+- `pytest`
+- `black .`
+
+**Reference:**
 M. Z. Tien, D. K. Sydykova, A. G. Meyer, C. O. Wilke (2013). PeptideBuilder:
 A simple Python library to generate model peptides. PeerJ 1:e80.
