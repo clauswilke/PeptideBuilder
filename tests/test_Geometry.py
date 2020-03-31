@@ -1,8 +1,32 @@
+from PeptideBuilder.Geometry import (
+    AlaGeo,
+    ArgGeo,
+    AsnGeo,
+    AspGeo,
+    CysGeo,
+    GlnGeo,
+    GluGeo,
+    GlyGeo,
+    HisGeo,
+    IleGeo,
+    LeuGeo,
+    LysGeo,
+    MetGeo,
+    PheGeo,
+    ProGeo,
+    SerGeo,
+    ThrGeo,
+    TrpGeo,
+    TyrGeo,
+    ValGeo,
+)
 from PeptideBuilder import Geometry
 
 # test all geometries for correct parameters
 def test_geometry_A():
     g = Geometry.geometry("A")
+    assert isinstance(g, AlaGeo)
+
     assert g.CA_CB_length == 1.52
     assert g.CA_C_N_angle == 116.642992978143
     assert g.CA_C_O_angle == 120.5
@@ -23,6 +47,8 @@ def test_geometry_A():
 
 def test_geometry_C():
     g = Geometry.geometry("C")
+    assert isinstance(g, CysGeo)
+
     assert g.CA_CB_SG_angle == 113.8169
     assert g.CA_CB_length == 1.52
     assert g.CA_C_N_angle == 116.642992978143
@@ -46,6 +72,8 @@ def test_geometry_C():
 
 def test_geometry_D():
     g = Geometry.geometry("D")
+    assert isinstance(g, AspGeo)
+
     assert g.CA_CB_CG_OD1_diangle == -46.7
     assert g.CA_CB_CG_OD2_diangle == 133.3
     assert g.CA_CB_CG_angle == 113.06
@@ -75,6 +103,8 @@ def test_geometry_D():
 
 def test_geometry_E():
     g = Geometry.geometry("E")
+    assert isinstance(g, GluGeo)
+
     assert g.CA_CB_CG_CD_diangle == -179.8
     assert g.CA_CB_CG_angle == 113.82
     assert g.CA_CB_length == 1.52
@@ -107,6 +137,8 @@ def test_geometry_E():
 
 def test_geometry_F():
     g = Geometry.geometry("F")
+    assert isinstance(g, PheGeo)
+
     assert g.CA_CB_CG_CD1_diangle == 93.3
     assert g.CA_CB_CG_CD2_diangle == -86.7
     assert g.CA_CB_CG_angle == 113.85
@@ -145,6 +177,8 @@ def test_geometry_F():
 
 def test_geometry_G():
     g = Geometry.geometry("G")
+    assert isinstance(g, GlyGeo)
+
     assert g.CA_C_N_angle == 116.642992978143
     assert g.CA_C_O_angle == 120.5117
     assert g.CA_C_length == 1.52
@@ -162,6 +196,8 @@ def test_geometry_G():
 
 def test_geometry_H():
     g = Geometry.geometry("H")
+    assert isinstance(g, HisGeo)
+
     assert g.CA_CB_CG_CD2_diangle == 104.3
     assert g.CA_CB_CG_ND1_diangle == -75.7
     assert g.CA_CB_CG_angle == 113.74
@@ -197,6 +233,8 @@ def test_geometry_H():
 
 def test_geometry_I():
     g = Geometry.geometry("I")
+    assert isinstance(g, IleGeo)
+
     assert g.CA_CB_CG1_CD1_diangle == 169.8
     assert g.CA_CB_CG1_angle == 110.7
     assert g.CA_CB_CG2_angle == 110.4
@@ -226,6 +264,8 @@ def test_geometry_I():
 
 def test_geometry_K():
     g = Geometry.geometry("K")
+    assert isinstance(g, LysGeo)
+
     assert g.CA_CB_CG_CD_diangle == -178.1
     assert g.CA_CB_CG_angle == 113.83
     assert g.CA_CB_length == 1.52
@@ -258,6 +298,8 @@ def test_geometry_K():
 
 def test_geometry_L():
     g = Geometry.geometry("L")
+    assert isinstance(g, LeuGeo)
+
     assert g.CA_CB_CG_CD1_diangle == 174.9
     assert g.CA_CB_CG_CD2_diangle == 66.7
     assert g.CA_CB_CG_angle == 116.1
@@ -287,6 +329,8 @@ def test_geometry_L():
 
 def test_geometry_M():
     g = Geometry.geometry("M")
+    assert isinstance(g, MetGeo)
+
     assert g.CA_CB_CG_SD_diangle == -179.6
     assert g.CA_CB_CG_angle == 113.68
     assert g.CA_CB_length == 1.52
@@ -316,6 +360,8 @@ def test_geometry_M():
 
 def test_geometry_N():
     g = Geometry.geometry("N")
+    assert isinstance(g, AsnGeo)
+
     assert g.CA_CB_CG_ND2_diangle == 121.7
     assert g.CA_CB_CG_OD1_diangle == -58.3
     assert g.CA_CB_CG_angle == 112.62
@@ -345,6 +391,8 @@ def test_geometry_N():
 
 def test_geometry_P():
     g = Geometry.geometry("P")
+    assert isinstance(g, ProGeo)
+
     assert g.CA_CB_CG_CD_diangle == -34.8
     assert g.CA_CB_CG_angle == 104.21
     assert g.CA_CB_length == 1.52
@@ -371,6 +419,8 @@ def test_geometry_P():
 
 def test_geometry_Q():
     g = Geometry.geometry("Q")
+    assert isinstance(g, GlnGeo)
+
     assert g.CA_CB_CG_CD_diangle == -69.6
     assert g.CA_CB_CG_angle == 113.75
     assert g.CA_CB_length == 1.52
@@ -403,6 +453,8 @@ def test_geometry_Q():
 
 def test_geometry_R():
     g = Geometry.geometry("R")
+    assert isinstance(g, ArgGeo)
+
     assert g.CA_CB_CG_CD_diangle == -179.2
     assert g.CA_CB_CG_angle == 113.83
     assert g.CA_CB_length == 1.52
@@ -441,6 +493,8 @@ def test_geometry_R():
 
 def test_geometry_S():
     g = Geometry.geometry("S")
+    assert isinstance(g, SerGeo)
+
     assert g.CA_CB_OG_angle == 110.773
     assert g.CA_CB_length == 1.52
     assert g.CA_C_N_angle == 116.642992978143
@@ -464,6 +518,8 @@ def test_geometry_S():
 
 def test_geometry_T():
     g = Geometry.geometry("T")
+    assert isinstance(g, ThrGeo)
+
     assert g.CA_CB_CG2_angle == 111.13
     assert g.CA_CB_OG1_angle == 109.18
     assert g.CA_CB_length == 1.52
@@ -490,6 +546,8 @@ def test_geometry_T():
 
 def test_geometry_V():
     g = Geometry.geometry("V")
+    assert isinstance(g, ValGeo)
+
     assert g.CA_CB_CG1_angle == 110.7
     assert g.CA_CB_CG2_angle == 110.4
     assert g.CA_CB_length == 1.52
@@ -516,6 +574,8 @@ def test_geometry_V():
 
 def test_geometry_W():
     g = Geometry.geometry("W")
+    assert isinstance(g, TrpGeo)
+
     assert g.CA_CB_CG_CD1_diangle == 96.3
     assert g.CA_CB_CG_CD2_diangle == -83.7
     assert g.CA_CB_CG_angle == 114.1
@@ -563,6 +623,8 @@ def test_geometry_W():
 
 def test_geometry_Y():
     g = Geometry.geometry("Y")
+    assert isinstance(g, TyrGeo)
+
     assert g.CA_CB_CG_CD1_diangle == 93.1
     assert g.CA_CB_CG_CD2_diangle == 273.1
     assert g.CA_CB_CG_angle == 113.8
