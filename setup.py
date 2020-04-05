@@ -31,7 +31,7 @@ setup(
     author_email="Matthew.Tien89@gmail.com",
     description="Create peptide PDB files with specified geometry",
     long_description=long_description,
-    long_description_content_type="ext/markdown",
+    long_description_content_type="text/markdown",
     url="https://github.com/clauswilke/PeptideBuilder",
     download_url="https://github.com/clauswilke/PeptideBuilder/releases",
     platforms="Tested on Mac OS X and Windows 10",
