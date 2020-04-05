@@ -21,7 +21,7 @@ from Bio.PDB.Residue import Residue
 from Bio.PDB.Chain import Chain
 from Bio.PDB.Model import Model
 from Bio.PDB.Structure import Structure
-from Bio.PDB.vectors import Vector, rotaxis, calc_dihedral
+from Bio.PDB.vectors import Vector, rotaxis, calc_dihedral, calc_angle
 import numpy as np
 
 from .Geometry import (
@@ -1450,3 +1450,40 @@ def make_structure_from_geos(geos: List[Geo]) -> Structure:
         model_structure = add_residue(model_structure, geos[i])
 
     return model_structure
+
+
+def add_terminal_OXT(structure: Structure, C_OXT_length: float = 1.23) -> Structure:
+    """Adds a terminal oxygen atom ('OXT') to the last residue of chain A model 0 of the given structure, and returns the new structure. The OXT atom object will be contained in the last residue object of the structure.
+
+This function should be used only when the structure object is completed and no further residues need to be appended."""
+
+    rad = 180.0 / math.pi
+
+    # obtain last residue infomation
+    resRef = getReferenceResidue(structure)
+    N_resRef = resRef["N"]
+    CA_resRef = resRef["CA"]
+    C_resRef = resRef["C"]
+    O_resRef = resRef["O"]
+
+    n_vec = N_resRef.get_vector()
+    ca_vec = CA_resRef.get_vector()
+    c_vec = C_resRef.get_vector()
+    o_vec = O_resRef.get_vector()
+
+    # geometry to bring together residue
+    CA_C_OXT_angle = calc_angle(ca_vec, c_vec, o_vec) * rad
+    N_CA_C_O_diangle = calc_dihedral(n_vec, ca_vec, c_vec, o_vec) * rad
+    N_CA_C_OXT_diangle = N_CA_C_O_diangle - 180.0
+    if N_CA_C_O_diangle < 0:
+        N_CA_C_OXT_diangle = N_CA_C_O_diangle + 180.0
+
+    # OXT atom creation
+    OXT_coord = calculateCoordinates(
+        N_resRef, CA_resRef, C_resRef, C_OXT_length, CA_C_OXT_angle, N_CA_C_OXT_diangle
+    )
+    OXT = Atom("OXT", OXT_coord, 0.0, 1.0, " ", "OXT", 0, "O")
+
+    # modify last residue of the structure to contain the OXT atom
+    resRef.add(OXT)
+    return structure
