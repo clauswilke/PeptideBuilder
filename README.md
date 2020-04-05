@@ -25,7 +25,7 @@ The file `test_PeptideBuilder.py` in `tests` contains extensive tests for the va
 
 ## Misc
 
-The software is provided to you under the MIT license (see file LICENSE).
+The software is provided to you under the MIT license (see file `LICENSE.txt`).
 The most up-to-date version of this software is available at
 https://github.com/clauswilke/PeptideBuilder.
 
