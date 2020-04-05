@@ -19,8 +19,9 @@ PeptideBuilder has one required dependency: [Biopython](https://pypi.org/project
 
 ## Examples
 
-The `examples` folder contains two scripts showing typical usage. The script `simpleExample.py` is a brief example script demonstrating
-basic use of the PeptideBuilder library. The script `evaluation.py` reproduces the results presented in Table 1 of Tien et al. (2013).
+For example usage, we encourage you to checkout the scripts in the `examples` folder and in the `tests` folder. The `examples` folder contains two scripts showing typical usage. The script `simpleExample.py` is a brief example script demonstrating basic use of the PeptideBuilder library. The script `evaluation.py` reproduces the results presented in Table 1 of Tien et al. (2013).
+
+The file `test_PeptideBuilder.py` in `tests` contains extensive tests for the various functions provided by this library and may also be useful if you're looking for example usage.
 
 ## Misc
 
