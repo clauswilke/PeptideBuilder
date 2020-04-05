@@ -1453,13 +1453,9 @@ def make_structure_from_geos(geos: List[Geo]) -> Structure:
 
 
 def add_terminal_OXT(structure: Structure, C_OXT_length: float = 1.23) -> Structure:
-    """Adds a terminal oxygen atom ('OXT') to the last 
-    residue of chain A model 0 of the given structure, 
-    and returns the new structure. The OXT atom object will
-    be contained in the last residue object of the structure. 
-    
-    This function should be used only when the structure object
-    is completed and no further residues need to be appended."""
+    """Adds a terminal oxygen atom ('OXT') to the last residue of chain A model 0 of the given structure, and returns the new structure. The OXT atom object will be contained in the last residue object of the structure. 
+
+This function should be used only when the structure object is completed and no further residues need to be appended."""
 
     rad = 180.0 / math.pi
 
