@@ -29,7 +29,7 @@ def compare_to_reference(structure, ref_file) -> bool:
     if not len(res) == len(ref_res):
         return False
 
-    result = True    
+    result = True
     for r1, r2 in zip(res, ref_res):
         result = result and compare_residues(r1, r2)
 
@@ -90,7 +90,7 @@ def test_make_extended_structure():
     """
     structure = PeptideBuilder.make_extended_structure("ACDEFGHIKLMNPQRSTVWY")
     assert compare_to_reference(structure, "extended.pdb")
-    
+
     # test unit tests by comparing structures that don't match
     structure = PeptideBuilder.make_extended_structure("ACDEFGHIKLMNPQRSTVW")
     assert not compare_to_reference(structure, "extended.pdb")
