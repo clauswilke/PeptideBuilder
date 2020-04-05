@@ -36,13 +36,10 @@ class Geo:
     CA_C_O_angle: float
     N_CA_C_O_diangle: float
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         repr = ""
-        for var in dir(self):
-            if (
-                var in self.__dict__
-            ):  # exclude member functions, only print member variables
-                repr += "%s = %s\n" % (var, self.__dict__[var])
+        for var in self.__dict__:
+            repr += "%s = %s\n" % (var, self.__dict__[var])
         return repr
 
 

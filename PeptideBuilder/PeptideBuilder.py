@@ -22,7 +22,7 @@ from Bio.PDB.Chain import Chain
 from Bio.PDB.Model import Model
 from Bio.PDB.Structure import Structure
 from Bio.PDB.vectors import Vector, rotaxis, calc_dihedral
-import numpy
+import numpy as np
 
 from .Geometry import (
     AlaGeo,
@@ -50,23 +50,9 @@ from .Geometry import (
 )
 
 
-def get_prop(atm) -> None:
-    print(atm.get_name())
-    print(atm.get_coord())
-    print(atm.get_vector())
-    print(atm.get_bfactor())
-    print(atm.get_anisou())
-    print(atm.get_occupancy())
-    print(atm.get_altloc())
-    print(atm.get_fullname())
-    print(atm.get_serial_number())
-    print(atm.get_parent())
-    print(atm.get_id())
-    print(atm.get_full_id())
-    print(atm.get_level())
-
-
-def calculateCoordinates(refA, refB, refC, L, ang, di):
+def calculateCoordinates(
+    refA: Residue, refB: Residue, refC: Residue, L: float, ang: float, di: float
+) -> np.ndarray:
     AV = refA.get_vector()
     BV = refB.get_vector()
     CV = refC.get_vector()
@@ -140,7 +126,7 @@ def calculateCoordinates(refA, refB, refC, L, ang, di):
             + A * BY * const
         ) / ((B * BZ - BY * G) * denom)
 
-    # GET THE NEW VECTOR from the orgin
+    # Get the new Vector from the origin
     D = Vector(X, Y, Z) + CV
     with warnings.catch_warnings():
         # ignore inconsequential warning
@@ -156,15 +142,12 @@ def calculateCoordinates(refA, refB, refC, L, ang, di):
 
 def makeGly(segID: int, N, CA, C, O, geo: Geo) -> Residue:
     """Creates a Glycine residue"""
-    ##Create Residue Data Structure
     res = Residue((" ", segID, " "), "GLY", "    ")
 
     res.add(N)
     res.add(CA)
     res.add(C)
     res.add(O)
-
-    ##print(res)
     return res
 
 
@@ -180,7 +163,6 @@ def makeAla(segID: int, N, CA, C, O, geo: AlaGeo) -> Residue:
     )
     CB = Atom("CB", carbon_b, 0.0, 1.0, " ", " CB", 0, "C")
 
-    ##Create Residue Data Structure
     res = Residue((" ", segID, " "), "ALA", "    ")
     res.add(N)
     res.add(CA)
@@ -218,8 +200,6 @@ def makeSer(segID: int, N, CA, C, O, geo: SerGeo) -> Residue:
     res.add(O)
     res.add(CB)
     res.add(OG)
-
-    ##print(res)
     return res
 
 
@@ -243,7 +223,6 @@ def makeCys(segID: int, N, CA, C, O, geo: CysGeo) -> Residue:
     )
     SG = Atom("SG", sulfur_g, 0.0, 1.0, " ", " SG", 0, "S")
 
-    ##Create Residue Data Structure
     res = Residue((" ", segID, " "), "CYS", "    ")
     res.add(N)
     res.add(CA)
@@ -282,7 +261,6 @@ def makeVal(segID: int, N, CA, C, O, geo: ValGeo) -> Residue:
     )
     CG2 = Atom("CG2", carbon_g2, 0.0, 1.0, " ", " CG2", 0, "C")
 
-    ##Create Residue Data Structure
     res = Residue((" ", segID, " "), "VAL", "    ")
     res.add(N)
     res.add(CA)
@@ -330,7 +308,6 @@ def makeIle(segID: int, N, CA, C, O, geo: IleGeo) -> Residue:
     )
     CD1 = Atom("CD1", carbon_d1, 0.0, 1.0, " ", " CD1", 0, "C")
 
-    ##Create Residue Data Structure
     res = Residue((" ", segID, " "), "ILE", "    ")
     res.add(N)
     res.add(CA)
@@ -379,7 +356,6 @@ def makeLeu(segID: int, N, CA, C, O, geo: LeuGeo) -> Residue:
     )
     CD2 = Atom("CD2", carbon_d2, 0.0, 1.0, " ", " CD2", 0, "C")
 
-    ##Create Residue Data Structure
     res = Residue((" ", segID, " "), "LEU", "    ")
     res.add(N)
     res.add(CA)
@@ -420,7 +396,6 @@ def makeThr(segID: int, N, CA, C, O, geo: ThrGeo) -> Residue:
     )
     CG2 = Atom("CG2", carbon_g2, 0.0, 1.0, " ", " CG2", 0, "C")
 
-    ##Create Residue Data Structure
     res = Residue((" ", segID, " "), "THR", "    ")
     res.add(N)
     res.add(CA)
@@ -492,7 +467,6 @@ def makeArg(segID: int, N, CA, C, O, geo: ArgGeo) -> Residue:
     )
     NH2 = Atom("NH2", nitrogen_h2, 0.0, 1.0, " ", " NH2", 0, "N")
 
-    ##Create Residue Data Structure
     res = Residue((" ", segID, " "), "ARG", "    ")
     res.add(N)
     res.add(CA)
@@ -552,7 +526,6 @@ def makeLys(segID: int, N, CA, C, O, geo: LysGeo) -> Residue:
     )
     NZ = Atom("NZ", nitrogen_z, 0.0, 1.0, " ", " NZ", 0, "N")
 
-    ##Create Residue Data Structure
     res = Residue((" ", segID, " "), "LYS", "    ")
     res.add(N)
     res.add(CA)
@@ -602,7 +575,6 @@ def makeAsp(segID: int, N, CA, C, O, geo: AspGeo) -> Residue:
     )
     OD2 = Atom("OD2", oxygen_d2, 0.0, 1.0, " ", " OD2", 0, "O")
 
-    ##Create Residue Data Structure
     res = Residue((" ", segID, " "), "ASP", "    ")
     res.add(N)
     res.add(CA)
@@ -652,7 +624,6 @@ def makeAsn(segID, N, CA, C, O, geo):
     ND2 = Atom("ND2", nitrogen_d2, 0.0, 1.0, " ", " ND2", 0, "N")
     res = Residue((" ", segID, " "), "ASN", "    ")
 
-    ##Create Residue Data Structure
     res.add(N)
     res.add(CA)
     res.add(C)
@@ -708,7 +679,6 @@ def makeGlu(segID: int, N, CA, C, O, geo: GluGeo) -> Residue:
     )
     OE2 = Atom("OE2", oxygen_e2, 0.0, 1.0, " ", " OE2", 0, "O")
 
-    ##Create Residue Data Structure
     res = Residue((" ", segID, " "), "GLU", "    ")
 
     res.add(N)
@@ -818,7 +788,6 @@ def makeMet(segID: int, N, CA, C, O, geo: MetGeo) -> Residue:
     )
     CE = Atom("CE", carbon_e, 0.0, 1.0, " ", " CE", 0, "C")
 
-    ##Create Residue Data Structure
     res = Residue((" ", segID, " "), "MET", "    ")
     res.add(N)
     res.add(CA)
@@ -883,7 +852,6 @@ def makeHis(segID: int, N, CA, C, O, geo: HisGeo) -> Residue:
     )
     NE2 = Atom("NE2", nitrogen_e2, 0.0, 1.0, " ", " NE2", 0, "N")
 
-    ##Create Residue Data Structure
     res = Residue((" ", segID, " "), "HIS", "    ")
     res.add(N)
     res.add(CA)
@@ -926,7 +894,6 @@ def makePro(segID: int, N, CA, C, O, geo: ProGeo) -> Residue:
     )
     CD = Atom("CD", carbon_d, 0.0, 1.0, " ", " CD", 0, "C")
 
-    ##Create Residue Data Structure
     res = Residue((" ", segID, " "), "PRO", "    ")
 
     res.add(N)
@@ -1000,7 +967,6 @@ def makePhe(segID: int, N, CA, C, O, geo: PheGeo) -> Residue:
     )
     CZ = Atom("CZ", carbon_z, 0.0, 1.0, " ", " CZ", 0, "C")
 
-    ##Create Residue Data Structures
     res = Residue((" ", segID, " "), "PHE", "    ")
     res.add(N)
     res.add(CA)
@@ -1276,9 +1242,9 @@ def initialize_res(residue: Union[Geo, str]) -> Structure:
     CA_C_length = geo.CA_C_length
     N_CA_C_angle = geo.N_CA_C_angle
 
-    CA_coord = numpy.array([0.0, 0.0, 0.0])
-    C_coord = numpy.array([CA_C_length, 0, 0])
-    N_coord = numpy.array(
+    CA_coord = np.array([0.0, 0.0, 0.0])
+    C_coord = np.array([CA_C_length, 0, 0])
+    N_coord = np.array(
         [
             CA_N_length * math.cos(N_CA_C_angle * (math.pi / 180.0)),
             CA_N_length * math.sin(N_CA_C_angle * (math.pi / 180.0)),
