@@ -8,8 +8,12 @@ from PeptideBuilder import Geometry
 
 
 def compare_residues(r1, r2) -> bool:
+    if not r1 == r2:
+        return False
+    if not len(list(r1.get_atoms())) == len(list(r2.get_atoms())):
+        return False
+
     result = True
-    result = result and r1 == r2
     for a1, a2 in zip(r1, r2):
         result = result and (abs(a1.coord - a2.coord) < 0.001).all()
 
@@ -20,9 +24,12 @@ def compare_to_reference(structure, ref_file) -> bool:
     parser = PDBParser()
     ref_structure = parser.get_structure("test", str(Path("tests", "pdbs", ref_file)))
 
-    result = True
     res = list(list(structure[0])[0])
     ref_res = list(list(ref_structure[0])[0])
+    if not len(res) == len(ref_res):
+        return False
+
+    result = True    
     for r1, r2 in zip(res, ref_res):
         result = result and compare_residues(r1, r2)
 
@@ -83,6 +90,12 @@ def test_make_extended_structure():
     """
     structure = PeptideBuilder.make_extended_structure("ACDEFGHIKLMNPQRSTVWY")
     assert compare_to_reference(structure, "extended.pdb")
+    
+    # test unit tests by comparing structures that don't match
+    structure = PeptideBuilder.make_extended_structure("ACDEFGHIKLMNPQRSTVW")
+    assert not compare_to_reference(structure, "extended.pdb")
+    structure = PeptideBuilder.make_extended_structure("ACDEFGHIKLMNPQRSTVWW")
+    assert not compare_to_reference(structure, "extended.pdb")
 
 
 def test_make_structure_from_geos2():
@@ -147,3 +160,5 @@ def test_add_terminal_OXT():
         PeptideBuilder.add_residue(structure, aa)
     PeptideBuilder.add_terminal_OXT(structure)
     assert compare_to_reference(structure, "extended_OXT.pdb")
+    # check that presence of OXT is tested
+    assert not compare_to_reference(structure, "extended.pdb")
