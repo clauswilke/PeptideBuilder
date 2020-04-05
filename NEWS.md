@@ -2,9 +2,10 @@
 
 ## PeptideBuilder 1.1.0
 
-- Support for Python 2.7 has been dropped
-- Proper unit tests have been added
-- The code has undergone extensive clean-up, thanks to Sean Aubin
+- It is now possible to add the terminal oxygen in a peptide via the newly added function `add_terminal_OXT()`. 
+- Support for Python 2.7 has been dropped.
+- Proper unit tests have been added.
+- The code has undergone extensive clean-up, thanks to Sean Aubin.
 
 ## PeptideBuilder 1.0.3
 
