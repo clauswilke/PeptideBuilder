@@ -35,7 +35,7 @@ def test_add_residue():
     """
     structure = PeptideBuilder.initialize_res("A")
     for aa in "CDEFGHIKLMNPQRSTVWY":
-        structure = PeptideBuilder.add_residue(structure, aa)
+        PeptideBuilder.add_residue(structure, aa)
 
     # extract peptide from structure and compare to expected
     ppb = PPBuilder()
@@ -62,7 +62,7 @@ def test_add_residue2():
         geo = Geometry.geometry(aa)
         geo.phi = phi
         geo.psi_im1 = psi_im1
-        structure = PeptideBuilder.add_residue(structure, geo)
+        PeptideBuilder.add_residue(structure, geo)
 
     assert compare_to_reference(structure, "helix.pdb")
 

@@ -1447,7 +1447,7 @@ def make_structure_from_geos(geos: List[Geo]) -> Structure:
     """Creates a structure out of a list of geometry objects."""
     model_structure = initialize_res(geos[0])
     for i in range(1, len(geos)):
-        model_structure = add_residue(model_structure, geos[i])
+        add_residue(model_structure, geos[i])
 
     return model_structure
 
