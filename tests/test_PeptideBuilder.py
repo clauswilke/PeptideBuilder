@@ -143,7 +143,7 @@ def test_add_terminal_OXT():
     Build a peptide with terminal OXT
     """
     structure = PeptideBuilder.initialize_res("A")
-    for aa in "CDEFGHIKLMNPQRSTVWY":
+    for aa in "CDEFGHIKLMNPQRSTVW":
         structure = PeptideBuilder.add_residue(structure, aa)
 
     structure = PeptideBuilder.add_terminal_OXT(structure)
