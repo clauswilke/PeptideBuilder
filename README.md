@@ -32,12 +32,18 @@ To test whether your installation works properly, run `pytest` in the top-level 
 
 ## Contributing
 
-Pull requests are welcome on GitHub. However, please note contributions must be styled with [`black`](https://black.readthedocs.io/en/stable/) and pass the `pytest` unit tests to be accepted.
+Pull requests are welcome on GitHub. However, to be accepted, contributions must:
+1. Be styled with [`black`](https://black.readthedocs.io/en/stable/)
+2. Be linted with `pylint`
+3. Be type-checked with `mypy`
+4. Pass the `pytest` unit tests
 
 Thus, before contributing code make sure the following commands exit without errors when run from the root directory of the Peptide Builder project:
 
 - `pytest`
 - `black .`
+- `mypy PeptideBuilder/`
+- `pylint --rcfile=setup.cfg PeptideBuilder/`
 
 **Reference:**
 M. Z. Tien, D. K. Sydykova, A. G. Meyer, C. O. Wilke (2013). PeptideBuilder:

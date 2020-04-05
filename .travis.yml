@@ -4,12 +4,14 @@ before_install:
   - python --version
   - pip install -U pip
   - pip install -U pytest coverage pytest-cov
-  - pip install codecov black
+  - pip install codecov black mypy pylint
 
 install:
   - pip install -e . # install package
 
 script:
+  - pylint --rcfile=setup.cfg PeptideBuilder/ # lint code
+  - mypy PeptideBuilder/ # check type annotations
   - black . --check # check formatting
   - pytest # run tests
 

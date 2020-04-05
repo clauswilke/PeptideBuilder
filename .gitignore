@@ -10,6 +10,7 @@ dist
 *.swp
 .ipynb_checkpoints/
 .cache
+.mypy_cache
 
 .coverage
 *.dist-info/

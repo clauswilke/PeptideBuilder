@@ -1315,7 +1315,7 @@ def initialize_res(residue: Union[Geo, str]) -> Structure:
 
 def getReferenceResidue(structure: Structure) -> Residue:
     """Returns the last residue of chain A model 0 of the given structure.
-    
+
     This function is a helper function that should not normally be called
     directly."""
 
@@ -1335,7 +1335,7 @@ def add_residue_from_geo(structure: Structure, geo: Geo) -> Structure:
     """Adds a residue to chain A model 0 of the given structure, and
     returns the new structure. The residue to be added is determined by
     the geometry object given as second argument.
-    
+
     This function is a helper function and should not normally be called
     directly. Call add_residue() instead."""
     resRef = getReferenceResidue(structure)
@@ -1434,7 +1434,7 @@ def add_residue(
     single-letter amino-acid code. In the latter case, the optional
     arguments phi, psi_im1, and omega specify the corresponding backbone
     angles.
-    
+
     When omega is specified, it needs to be a value greater than or equal
     to -360. Values below -360 are ignored."""
 
@@ -1459,7 +1459,7 @@ def make_structure(
     backbone dihedral angles. The argument AA_chain holds the
     sequence of amino acids to be used. The arguments phi and psi_im1 hold
     lists of backbone angles, one for each amino acid, *starting from
-    the second amino acid in the chain*. The argument 
+    the second amino acid in the chain*. The argument
     omega (optional) holds a list of omega angles, also starting from
     the second amino acid in the chain."""
     geo = geometry(AA_chain[0])
