@@ -137,14 +137,13 @@ def test_make_structure2():
     )
     assert compare_to_reference(structure, "helix2.pdb")
 
-
 def test_add_terminal_OXT():
     """
     Build a peptide with terminal OXT
     """
     structure = PeptideBuilder.initialize_res("A")
-    for aa in "CDEFGHIKLMNPQRSTVW":
-        structure = PeptideBuilder.add_residue(structure, aa)
+    for aa in "CDEFGHIKLMNPQRSTVWY":
+        PeptideBuilder.add_residue(structure, aa)
+    PeptideBuilder.add_terminal_OXT(structure)
+    assert compare_to_reference(structure, "extended_OXT.pdb")
 
-    structure = PeptideBuilder.add_terminal_OXT(structure)
-    assert True
