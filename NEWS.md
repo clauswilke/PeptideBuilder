@@ -4,7 +4,7 @@
 
 - Support for Python 2.7 has been dropped
 - Proper unit tests have been added
-- The code has gone extensive clean-up assisted by Sean Aubin
+- The code has undergone extensive clean-up, thanks to Sean Aubin
 
 ## PeptideBuilder 1.0.3
 
