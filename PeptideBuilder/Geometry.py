@@ -257,10 +257,14 @@ class IleGeo(Geo):
             self.CA_CB_CG1_CD1_diangle = 169.8
 
 
+# The following function is commented out, because it is not
+# recommended to randomize rotamers for isoleucine. The underlying
+# reason for this recommendation is that isoleucine's beta-carbon
+# is a chiral center.
 ##    def generateRandomRotamers(self):
-##        rotamer_bins=[-60, 60, 180]
-##        tempList=[]
-##        for i in range(0,3):
+##        rotamer_bins = [-60, 60, 180]
+##        tempList = []
+##        for i in range(0, 3):
 ##            tempList.append(random.choice(rotamer_bins))
 ##        self.inputRotamers(tempList)
 
@@ -313,13 +317,12 @@ class LeuGeo(Geo):
             self.CA_CB_CG_CD1_diangle = 174.9
             self.CA_CB_CG_CD2_diangle = 66.7
 
-
-##    def generateRandomRotamers(self):
-##        rotamer_bins=[-60, 60, 180]
-##        tempList=[]
-##        for i in range(0,3):
-##            tempList.append(random.choice(rotamer_bins))
-##        self.inputRotamers(tempList)
+    def generateRandomRotamers(self):
+        rotamer_bins = [-60, 60, 180]
+        tempList = []
+        for i in range(0, 3):
+            tempList.append(random.choice(rotamer_bins))
+        self.inputRotamers(tempList)
 
 
 class ThrGeo(Geo):
